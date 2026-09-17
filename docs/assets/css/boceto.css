@@ -1,0 +1,452 @@
+/* ===========================================================
+   boceto.css — lo que pide el dibujo del 12 de agosto
+   ===========================================================
+   Este archivo se carga DESPUÉS de estilos.css y solo agrega
+   lo que el boceto tiene y el sitio todavía no tenía:
+   la barra superior con buscador, la portada, los carruseles
+   y los reproductores.
+
+   estilos.css (la paleta y las tarjetas que ustedes hicieron)
+   no se tocó. Si algo aquí les estorba, se borra de aquí.
+   =========================================================== */
+
+
+/* ===== 1. BARRA SUPERIOR ÚNICA =====
+   El boceto tiene UNA barra arriba: logo · buscador · accesos · perfil.
+   Reemplaza al encabezado + barra-superior + barra-lateral que había. */
+
+.barra-sitio {
+  background-color: var(--verde-selva);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.7rem 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.barra-sitio .marca {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.barra-sitio .marca img,
+.barra-sitio .marca svg {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--arena);
+  padding: 2px;
+}
+
+.barra-sitio .marca .nombre {
+  font-family: var(--fuente-titulos);
+  color: var(--arena);
+  font-size: 1.05rem;
+  line-height: 1.1;
+}
+
+.barra-sitio .marca .nombre small {
+  display: block;
+  font-family: var(--fuente-texto);
+  font-size: 0.72rem;
+  color: var(--verde-claro);
+}
+
+
+/* ===== 2. BUSCADOR "¿En qué piensas?" ===== */
+
+.buscador {
+  flex: 1 1 260px;
+  max-width: 560px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--arena);
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+}
+
+.buscador .lupa {
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.buscador input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: var(--fuente-texto);
+  font-size: 0.92rem;
+  color: var(--texto-oscuro);
+  outline: none;
+  min-width: 0;
+}
+
+.buscador input::placeholder {
+  color: var(--texto-suave);
+}
+
+
+/* ===== 3. ACCESOS DE LA DERECHA (los iconos del boceto) ===== */
+
+.accesos {
+  display: flex;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.accesos a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--radio);
+  color: var(--arena);
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: background-color 0.2s ease;
+}
+
+.accesos a small {
+  font-family: var(--fuente-texto);
+  font-size: 0.62rem;
+  letter-spacing: 0.2px;
+}
+
+.accesos a:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+.accesos a.activo {
+  background-color: var(--coral);
+}
+
+
+/* ===== 4. PORTADA "Un café con la iguana" ===== */
+
+.portada {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background-color: var(--arena-tarjeta);
+  border: 3px solid var(--verde-selva);
+  border-radius: var(--radio);
+  padding: 1.4rem 1.8rem;
+  margin-bottom: 2.2rem;
+}
+
+.portada .ilustracion {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  border-radius: var(--radio);
+  background-color: var(--verde-claro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  overflow: hidden;
+}
+
+.portada .ilustracion img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portada h1 {
+  font-family: var(--fuente-titulos);
+  font-size: clamp(1.6rem, 4.5vw, 2.7rem);
+  color: var(--verde-selva);
+  line-height: 1.1;
+}
+
+.portada p {
+  margin-top: 0.4rem;
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+
+/* ===== 5. CARRUSELES (las filas con flecha › del boceto) ===== */
+
+.carrusel {
+  position: relative;
+}
+
+.carrusel .pista {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(215px, 1fr);
+  gap: 1.1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 0.3rem 3rem 1rem 0.3rem;
+  scrollbar-width: thin;
+}
+
+.carrusel .pista > * {
+  scroll-snap-align: start;
+}
+
+.carrusel .flecha-carrusel {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--verde-selva);
+  color: var(--arena);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--sombra);
+  transition: background-color 0.2s ease;
+}
+
+.carrusel .flecha-carrusel:hover {
+  background-color: var(--coral);
+}
+
+.carrusel .flecha-carrusel[hidden] {
+  display: none;
+}
+
+
+/* ===== 6. TARJETA DE VIDEO (miniatura + triángulo ▷) ===== */
+
+.tarjeta .miniatura-yt {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background-color: var(--verde-claro);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  width: 100%;
+  display: block;
+  overflow: hidden;
+}
+
+.tarjeta .miniatura-yt img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tarjeta .miniatura-yt::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-style: solid;
+  border-width: 14px 0 14px 24px;
+  border-color: transparent transparent transparent var(--arena);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.tarjeta .miniatura-yt:hover::after {
+  border-left-color: var(--coral);
+}
+
+.tarjeta iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  display: block;
+}
+
+
+/* ===== 7. REPRODUCTOR DE AUDIO (el ▷ con las rayitas) ===== */
+
+.tarjeta-audio {
+  background-color: var(--arena-tarjeta);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.tarjeta-audio h3 {
+  font-size: 0.95rem;
+  font-family: var(--fuente-titulos);
+  color: var(--verde-selva);
+}
+
+.tarjeta-audio p {
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+}
+
+.barra-audio {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 2px solid var(--verde-selva);
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  background: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.barra-audio .play {
+  color: var(--verde-selva);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.barra-audio .onda {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 22px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.barra-audio .onda span {
+  flex: 1;
+  background-color: var(--verde-iguana);
+  border-radius: 1px;
+  min-width: 2px;
+}
+
+.tarjeta-audio.pendiente .barra-audio {
+  border-color: var(--texto-suave);
+  cursor: default;
+  opacity: 0.55;
+}
+
+.etiqueta-pendiente {
+  display: inline-block;
+  font-size: 0.68rem;
+  background-color: var(--mostaza);
+  color: var(--verde-selva);
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+  font-weight: 700;
+}
+
+
+/* ===== 8. TARJETA DE DOCUMENTO (las rayitas del boceto) ===== */
+
+.tarjeta-doc .lineas {
+  aspect-ratio: 4 / 3;
+  background-color: var(--arena-tarjeta);
+  border-bottom: 1px solid var(--verde-claro);
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.tarjeta-doc .lineas i {
+  display: block;
+  height: 3px;
+  border-radius: 2px;
+  background-color: var(--verde-claro);
+}
+
+.tarjeta-doc .lineas i:nth-child(2n)   { width: 88%; }
+.tarjeta-doc .lineas i:nth-child(3n)   { width: 70%; }
+.tarjeta-doc .lineas i:nth-child(4n)   { width: 94%; }
+
+
+/* ===== 9. ESTADOS VACÍOS Y AVISOS ===== */
+
+.vacio {
+  background-color: var(--arena-tarjeta);
+  border: 2px dashed var(--verde-claro);
+  border-radius: var(--radio);
+  padding: 1.6rem;
+  text-align: center;
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+.aviso {
+  background-color: #FFF6E2;
+  border-left: 5px solid var(--mostaza);
+  border-radius: var(--radio);
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.4rem;
+  font-size: 0.87rem;
+  color: var(--texto-oscuro);
+}
+
+.aviso strong { color: var(--verde-selva); }
+
+
+/* ===== 10. CONTENIDO Y PIE ===== */
+
+.contenido {
+  padding: 1.8rem 1.5rem 2.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.seccion { margin-bottom: 2.4rem; }
+
+.seccion > h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.9rem;
+  border-bottom: 3px solid var(--verde-claro);
+  display: inline-block;
+  padding-bottom: 0.2rem;
+}
+
+.sin-resultados {
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+  padding: 0.5rem 0.3rem;
+}
+
+
+/* ===== 11. CELULAR ===== */
+
+@media (max-width: 760px) {
+  .barra-sitio {
+    flex-wrap: wrap;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .barra-sitio .marca .nombre { display: none; }
+
+  .buscador {
+    order: 3;
+    flex-basis: 100%;
+    max-width: none;
+  }
+
+  .accesos { margin-left: auto; }
+  .accesos a small { display: none; }
+  .accesos a { font-size: 1.25rem; padding: 0.45rem 0.55rem; }
+
+  .portada {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.2rem;
+  }
+
+  .carrusel .pista {
+    grid-auto-columns: minmax(78%, 1fr);
+    padding-right: 1rem;
+  }
+
+  .carrusel .flecha-carrusel { display: none; }
+}

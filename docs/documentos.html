@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Documentos, guías y noticias del Semillero de Tecnología Maker.">
+  <title>Docs — La web de la iguana</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/estilos.css">
+  <link rel="stylesheet" href="assets/css/boceto.css">
+</head>
+<body data-pagina="documentos">
+
+  <main class="contenido">
+
+    <section class="seccion">
+      <h2>Docs y noticias</h2>
+      <div class="aviso">
+        <strong>Falta definir qué va aquí.</strong> Los tres documentos de abajo son
+        de ejemplo. Hay que decidir si los DOCS son archivos PDF que ustedes escriben,
+        entradas tipo blog o enlaces a otras páginas — y cambiar
+        <code>datos/documentos.json</code> según eso.
+      </div>
+      <div class="cuadricula-tarjetas" id="cuadricula-documentos"></div>
+    </section>
+
+    <section class="seccion">
+      <h2>Sube un documento</h2>
+      <div class="aviso">
+        <strong>Todavía no se guarda.</strong> El texto se lee y se muestra en este
+        computador, pero se pierde al recargar la página.
+      </div>
+      <form class="zona-carga" id="form-documento">
+        <label class="zona-carga-caja" for="archivo-documento">
+          <span class="zona-carga-icono" aria-hidden="true">📎</span>
+          <span>Elige un archivo de texto (.txt)</span>
+        </label>
+        <input type="file" id="archivo-documento" accept=".txt,text/plain" hidden>
+        <input type="text" id="titulo-documento" placeholder="Título del documento">
+        <button type="submit">Probar</button>
+        <span class="zona-carga-nombre-archivo" id="nombre-archivo-documento">Ningún archivo elegido</span>
+      </form>
+
+      <ul class="lista-episodios" id="lista-documentos">
+        <!-- aquí se agregan los documentos de prueba -->
+      </ul>
+    </section>
+
+  </main>
+
+  <script src="assets/js/plantilla.js"></script>
+  <script src="assets/js/contenido.js"></script>
+  <script src="assets/js/carrusel.js"></script>
+  <script src="assets/js/subidas.js"></script>
+</body>
+</html>

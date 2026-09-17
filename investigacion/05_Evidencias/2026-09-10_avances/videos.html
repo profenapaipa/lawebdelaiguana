@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Videos — La web de la iguana</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header class="encabezado">
+    <svg class="logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="#4E7C5C"/>
+      <path d="M20 38c0-10 8-18 18-14 4 2 6 6 6 10 0 6-5 9-10 9-3 6-9 8-14 5l4-4c-3-1-4-3-4-6z" fill="#FBF6EA"/>
+      <circle cx="24" cy="36" r="2" fill="#1F3D2B"/>
+    </svg>
+    <div>
+      <div class="titulo-sitio">La web de la iguana</div>
+      <div class="eslogan">Un café con la iguana</div>
+    </div>
+  </header>
+
+  <nav class="barra-superior">
+    <a href="videos.html" class="activo">
+      <span>▶</span> Videos
+    </a>
+    <a href="noticias.html">
+      <span>📄</span> Docs
+    </a>
+    <a href="foro.html">
+      <span>💬</span> Foro
+    </a>
+  </nav>
+
+  <div class="contenedor-principal">
+
+    <nav class="barra-lateral">
+      <a href="index.html">
+        <span class="icono">🏠</span>
+        Inicio
+      </a>
+      <a href="podcasts.html">
+        <span class="icono">🎧</span>
+        Podcasts
+      </a>
+      <a href="usuario.html">
+        <span class="icono">👤</span>
+        Usuario
+      </a>
+    </nav>
+
+    <main class="contenido">
+
+      <section>
+        <h2>Sube tu video</h2>
+        <form class="zona-carga" id="form-video">
+          <label class="zona-carga-caja" for="archivo-video">
+            <span class="zona-carga-icono">🎬</span>
+            <span>Elige un archivo .mp4</span>
+          </label>
+          <input type="file" id="archivo-video" accept="video/mp4,video/*" hidden>
+          <input type="text" id="titulo-video" placeholder="Título del video">
+          <button type="submit">Subir video</button>
+          <span class="zona-carga-nombre-archivo" id="nombre-archivo-video">Ningún archivo elegido</span>
+        </form>
+      </section>
+
+      <section>
+        <h2>Todos los videos</h2>
+        <div class="cuadricula-tarjetas" id="cuadricula-videos">
+          <article class="tarjeta">
+            <div class="miniatura">▶</div>
+            <div class="info">
+              <h3>No te lo esperabas</h3>
+              <p>Un adelanto del próximo episodio con la iguana y sus amigos.</p>
+            </div>
+          </article>
+          <article class="tarjeta">
+            <div class="miniatura">▶</div>
+            <div class="info">
+              <h3>Detrás de cámaras</h3>
+              <p>Cómo se dibuja a la iguana, paso a paso.</p>
+            </div>
+          </article>
+          <article class="tarjeta">
+            <div class="miniatura">▶</div>
+            <div class="info">
+              <h3>Preguntas del público</h3>
+              <p>La iguana responde lo que le preguntaron los lectores.</p>
+            </div>
+          </article>
+          <article class="tarjeta">
+            <div class="miniatura">▶</div>
+            <div class="info">
+              <h3>Un día cualquiera</h3>
+              <p>Un vistazo tranquilo a un día normal en la selva.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="pie-pagina">
+    Hecho con 🦎 por estudiantes de colegio — La web de la iguana
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

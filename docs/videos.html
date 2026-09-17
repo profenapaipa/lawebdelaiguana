@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Todos los videos y cortometrajes del Semillero de Tecnología Maker.">
+  <title>Videos — La web de la iguana</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/estilos.css">
+  <link rel="stylesheet" href="assets/css/boceto.css">
+</head>
+<body data-pagina="videos">
+
+  <main class="contenido">
+
+    <section class="seccion">
+      <h2>Todos los videos</h2>
+      <div class="cuadricula-tarjetas" id="cuadricula-videos"></div>
+    </section>
+
+    <section class="seccion">
+      <h2>Sube tu video</h2>
+      <div class="aviso">
+        <strong>Todavía no se guarda.</strong> El video que elijas se ve solo en
+        este computador y desaparece al recargar la página. Para publicarlo de
+        verdad hay que agregarlo a <code>datos/videos.json</code>, y eso lo hacen
+        los administradores. La subida real necesita base de datos, que es la fase 2.
+      </div>
+      <form class="zona-carga" id="form-video">
+        <label class="zona-carga-caja" for="archivo-video">
+          <span class="zona-carga-icono" aria-hidden="true">🎬</span>
+          <span>Elige un archivo .mp4</span>
+        </label>
+        <input type="file" id="archivo-video" accept="video/mp4,video/*" hidden>
+        <input type="text" id="titulo-video" placeholder="Título del video">
+        <button type="submit">Probar</button>
+        <span class="zona-carga-nombre-archivo" id="nombre-archivo-video">Ningún archivo elegido</span>
+      </form>
+    </section>
+
+  </main>
+
+  <script src="assets/js/plantilla.js"></script>
+  <script src="assets/js/contenido.js"></script>
+  <script src="assets/js/carrusel.js"></script>
+  <script src="assets/js/subidas.js"></script>
+</body>
+</html>

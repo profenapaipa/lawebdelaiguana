@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usuario — La web de la iguana</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header class="encabezado">
+    <svg class="logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="#4E7C5C"/>
+      <path d="M20 38c0-10 8-18 18-14 4 2 6 6 6 10 0 6-5 9-10 9-3 6-9 8-14 5l4-4c-3-1-4-3-4-6z" fill="#FBF6EA"/>
+      <circle cx="24" cy="36" r="2" fill="#1F3D2B"/>
+    </svg>
+    <div>
+      <div class="titulo-sitio">La web de la iguana</div>
+      <div class="eslogan">Un café con la iguana</div>
+    </div>
+  </header>
+
+  <nav class="barra-superior">
+    <a href="videos.html">
+      <span>▶</span> Videos
+    </a>
+    <a href="noticias.html">
+      <span>📄</span> Docs
+    </a>
+    <a href="foro.html">
+      <span>💬</span> Foro
+    </a>
+  </nav>
+
+  <div class="contenedor-principal">
+
+    <nav class="barra-lateral">
+      <a href="index.html">
+        <span class="icono">🏠</span>
+        Inicio
+      </a>
+      <a href="podcasts.html">
+        <span class="icono">🎧</span>
+        Podcasts
+      </a>
+      <a href="usuario.html" class="activo">
+        <span class="icono">👤</span>
+        Usuario
+      </a>
+    </nav>
+
+    <main class="contenido">
+
+      <section>
+        <div class="perfil-encabezado">
+          <div class="perfil-avatar">🙂</div>
+          <div class="perfil-info">
+            <h2>Sofía Ramírez</h2>
+            <div class="perfil-alias">@sofi_iguana</div>
+            <p class="perfil-bio">Fan de los podcasts de los martes y de dibujar iguanas en el recreo.</p>
+          </div>
+          <button class="perfil-editar" type="button">Editar perfil</button>
+        </div>
+      </section>
+
+      <section>
+        <h2>Tu actividad</h2>
+        <div class="cuadricula-estadisticas">
+          <div class="estadistica">
+            <div class="numero">12</div>
+            <div class="etiqueta">Videos vistos</div>
+          </div>
+          <div class="estadistica">
+            <div class="numero">8</div>
+            <div class="etiqueta">Podcasts escuchados</div>
+          </div>
+          <div class="estadistica">
+            <div class="numero">5</div>
+            <div class="etiqueta">Comentarios en el foro</div>
+          </div>
+          <div class="estadistica">
+            <div class="numero">2</div>
+            <div class="etiqueta">Insignias conseguidas</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Insignias</h2>
+        <div class="cuadricula-insignias">
+          <div class="insignia conseguida">
+            <div class="icono-insignia">🥚</div>
+            <h3>Cría curiosa</h3>
+            <p>Visitaste el sitio por primera vez.</p>
+          </div>
+          <div class="insignia conseguida">
+            <div class="icono-insignia">🎧</div>
+            <h3>Oyente fiel</h3>
+            <p>Escuchaste 5 podcasts o más.</p>
+          </div>
+          <div class="insignia bloqueada">
+            <div class="icono-insignia">💬</div>
+            <h3>Voz del foro</h3>
+            <p>Deja 10 comentarios para desbloquearla.</p>
+          </div>
+          <div class="insignia bloqueada">
+            <div class="icono-insignia">☀️</div>
+            <h3>Madruga-iguana</h3>
+            <p>Entra al sitio 7 días seguidos.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="pie-pagina">
+    Hecho con 🦎 por estudiantes de colegio — La web de la iguana
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

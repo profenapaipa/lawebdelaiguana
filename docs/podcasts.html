@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Todos los episodios de podcast del Semillero de Tecnología Maker.">
+  <title>Podcasts — La web de la iguana</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/estilos.css">
+  <link rel="stylesheet" href="assets/css/boceto.css">
+</head>
+<body data-pagina="podcasts">
+
+  <main class="contenido">
+
+    <section class="seccion">
+      <h2>Todos los episodios</h2>
+      <div class="aviso">
+        <strong>Falta conectar Spotify.</strong> Los episodios están anunciados pero
+        todavía no tienen su enlace. Cuando se agregue el código del episodio en
+        <code>datos/podcasts.json</code>, el reproductor se activa solo.
+      </div>
+      <div class="cuadricula-tarjetas" id="lista-podcasts"></div>
+    </section>
+
+    <section class="seccion">
+      <h2>Sube tu podcast</h2>
+      <div class="aviso">
+        <strong>Todavía no se guarda.</strong> El audio se escucha solo en este
+        computador y se pierde al recargar. La publicación real la hacen los
+        administradores desde <code>datos/podcasts.json</code>.
+      </div>
+      <form class="zona-carga" id="form-podcast">
+        <label class="zona-carga-caja" for="archivo-podcast">
+          <span class="zona-carga-icono" aria-hidden="true">🎙️</span>
+          <span>Elige un archivo .mp3</span>
+        </label>
+        <input type="file" id="archivo-podcast" accept="audio/mp3,audio/mpeg,audio/*" hidden>
+        <input type="text" id="titulo-podcast" placeholder="Título del episodio">
+        <button type="submit">Probar</button>
+        <span class="zona-carga-nombre-archivo" id="nombre-archivo-podcast">Ningún archivo elegido</span>
+      </form>
+    </section>
+
+  </main>
+
+  <script src="assets/js/plantilla.js"></script>
+  <script src="assets/js/contenido.js"></script>
+  <script src="assets/js/carrusel.js"></script>
+  <script src="assets/js/subidas.js"></script>
+</body>
+</html>

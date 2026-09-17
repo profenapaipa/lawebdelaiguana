@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La web de la iguana</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header class="encabezado">
+    <a href="index.html" class="logo-link">
+      <img src="black-white-iguana-head-logo-260nw-2400396537.webp" class="logo" alt="Logo de la iguana">
+    </a>
+    <img src="Logo_injuv.png" class="logo logo-injuv" alt="Logo INJUV">
+    <div>
+      <div class="titulo-sitio">La web de la iguana</div>
+      <div class="eslogan">Un café con la iguana</div>
+    </div>
+    
+    <!-- Dropdown de usuario en la esquina superior derecha -->
+    <div class="usuario-dropdown">
+      <button class="btn-usuario" id="btnUsuario">
+        <span class="icono-usuario">👤</span>
+        <span>Mi perfil</span>
+      </button>
+      <div class="tarjeta-usuario" id="tarjetaUsuario">
+        <div class="cabecera-tarjeta">
+          <div class="avatar-mini">👤</div>
+          <div class="info-usuario-mini">
+            <p class="nombre-usuario">Juan Iguana</p>
+            <p class="alias-usuario">@juaniguana</p>
+          </div>
+        </div>
+        <div class="opciones-usuario">
+          <a href="usuario.html" class="opcion-usuario">
+            <span>⚙️</span> Configuración
+          </a>
+          <a href="usuario.html#insignias" class="opcion-usuario">
+            <span>🏆</span> Insignias
+          </a>
+          <a href="usuario.html#funciones" class="opcion-usuario">
+            <span>✨</span> Funciones básicas
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="barra-superior">
+    <a href="videos.html">
+      <span>▶</span> Videos
+    </a>
+    <a href="noticias.html">
+      <span>📄</span> Docs
+    </a>
+    <a href="foro.html">
+      <span>💬</span> Foro
+    </a>
+    <a href="podcasts.html">
+      <span>🎧</span> Podcasts
+    </a>
+  </nav>
+
+  <div class="contenedor-principal">
+
+    <!-- ===== MENÚ LATERAL ===== -->
+    <nav class="barra-lateral">
+      <a href="index.html" class="activo">
+        <span class="icono">🏠</span>
+        Inicio
+      </a>
+      <a href="podcasts.html">
+        <span class="icono">🎧</span>
+        Podcasts
+      </a>
+      <a href="usuario.html">
+        <span class="icono">👤</span>
+        Usuario
+      </a>
+    </nav>
+
+    <main class="contenido">
+
+      <section>
+        <h2>Videos nuevos</h2>
+        <div class="cuadricula-tarjetas">
+          <article class="tarjeta">
+            <div class="miniatura">▶</div>
+            <div class="info">
+              <h3>No te lo esperabas</h3>
+              <p>Un adelanto del próximo episodio con la iguana y sus amigos.</p>
+            </div>
+          </article>
+          <article class="tarjeta">
+            <div class="miniatura">▶</div>
+            <div class="info">
+              <h3>Detrás de cámaras</h3>
+              <p>Cómo se dibuja a la iguana, paso a paso.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Episodios recientes</h2>
+        <ul class="lista-episodios">
+          <li class="episodio">
+            <div class="fila-titulo">
+              MP3 news
+              <span class="flecha">▽</span>
+            </div>
+            <div class="detalle">
+              <p>Las noticias más recientes del mundo de la iguana, en formato de audio.</p>
+            </div>
+          </li>
+          <li class="episodio">
+            <div class="fila-titulo">
+              Hablando con Dios
+              <span class="flecha">▽</span>
+            </div>
+            <div class="detalle">
+              <p>Una charla tranquila sobre preguntas grandes y respuestas sencillas.</p>
+            </div>
+          </li>
+          <li class="episodio">
+            <div class="fila-titulo">
+              Entre sillas
+              <span class="flecha">▽</span>
+            </div>
+            <div class="detalle">
+              <p>Conversaciones cortas grabadas en el recreo.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="pie-pagina">
+    Hecho con 🦎 por estudiantes de colegio — La web de la iguana
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

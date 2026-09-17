@@ -1,0 +1,22 @@
+[
+  {
+    "titulo": "MP3 News",
+    "descripcion": "Las noticias más recientes del colegio, en formato de audio.",
+    "spotify": null
+  },
+  {
+    "titulo": "A puerta abierta",
+    "descripcion": "Conversaciones con invitados del colegio.",
+    "spotify": null
+  },
+  {
+    "titulo": "Hablando con Dios",
+    "descripcion": "Una charla tranquila sobre preguntas grandes y respuestas sencillas.",
+    "spotify": null
+  },
+  {
+    "titulo": "Entre sillas",
+    "descripcion": "Conversaciones cortas grabadas en el recreo.",
+    "spotify": null
+  }
+]
