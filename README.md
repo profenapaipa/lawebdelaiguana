@@ -103,16 +103,17 @@ docs/
 ├── podcasts.html       todos los episodios
 ├── documentos.html     docs y noticias
 ├── foro.html           en construcción (fase 2)
-├── usuario.html        el equipo y cómo va el proyecto
 ├── 404.html            página no encontrada
 ├── .nojekyll           le dice a GitHub que no procese nada
 │
 ├── assets/
 │   ├── css/
-│   │   ├── estilos.css   la paleta y los componentes del equipo
-│   │   └── boceto.css    lo que agrega el dibujo del 12 de agosto
+│   │   ├── estilos.css   la hoja del equipo: paleta, encabezado,
+│   │   │                 menú de usuario, tarjetas, zona de carga
+│   │   └── boceto.css    lo que agrega el dibujo del 12 de agosto:
+│   │                     buscador, portada, carruseles, reproductores
 │   ├── js/
-│   │   ├── plantilla.js  la barra de arriba y el pie, en un solo lugar
+│   │   ├── plantilla.js  el encabezado, las barras y el pie, en un solo lugar
 │   │   ├── contenido.js  convierte los .json en tarjetas
 │   │   ├── carrusel.js   la flecha › de cada fila
 │   │   └── subidas.js    probar un archivo antes de publicarlo
@@ -123,8 +124,8 @@ docs/
 
 **Dos ideas sostienen todo esto:**
 
-1. **La barra se escribe una sola vez** (`plantilla.js`) y se inyecta en las 6
-   páginas. Antes estaba copiada 6 veces: cambiar un enlace eran 6 ediciones.
+1. **El encabezado se escribe una sola vez** (`plantilla.js`) y se inyecta en las 5
+   páginas. Antes estaba copiado 5 veces: cambiar un enlace eran 5 ediciones.
 2. **El contenido vive en `datos/`, no en el HTML.** Publicar deja de ser programar.
 
 Cada página dice quién es con `<body data-pagina="videos">`, y así la barra marca
@@ -138,12 +139,13 @@ sola la pestaña activa.
 |---|---|
 | ✅ | Portada, barra superior, buscador, carruseles |
 | ✅ | 7 videos reales desde YouTube, con reproducción al hacer clic |
-| ✅ | El buscador filtra videos, podcasts y documentos a la vez |
+| ✅ | El buscador filtra videos, podcasts y documentos a la vez, sin importar tildes |
+| ✅ | Menú de usuario con mini-insignias: abre, cierra afuera y con Escape |
 | ⏳ | Podcasts: las tarjetas existen, falta el enlace de Spotify |
 | ⏳ | Docs: falta definir si son PDF, blog o enlaces |
 | ❌ | Foro: necesita base de datos y login → fase 2 |
 | ❌ | Subir archivos: hoy solo se previsualizan, no se guardan → fase 2 |
-| ❌ | Insignias y perfil de usuario: diseñados, necesitan login → fase 2 |
+| ❌ | Menú de usuario e insignias: diseñados y abriendo, pero sin datos reales → fase 2 |
 
 Lo que no funciona está dicho en el propio sitio, no escondido.
 

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La web de la iguana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header class="encabezado">
+    <a class="encabezado-marca" href="index.html">
+      <img src="black-white-iguana-head-logo-260nw-2400396537.webp" class="logo" alt="Logo de la iguana">
+      <img src="Logo_injuv.png" class="logo logo-injuv" alt="Logo INJUV">
+      <div>
+        <div class="titulo-sitio">La web de la iguana</div>
+        <div class="eslogan">Un café con la iguana</div>
+      </div>
+    </a>
+
+    <div class="menu-usuario">
+      <button class="boton-usuario" id="boton-usuario" type="button" aria-haspopup="true" aria-expanded="false">
+        <span>🙂</span>
+      </button>
+      <div class="tarjeta-usuario" id="tarjeta-usuario" hidden>
+        <div class="tarjeta-usuario-perfil">
+          <span class="avatar-mini">🙂</span>
+          <div>
+            <div class="tarjeta-usuario-nombre">Sofía Ramírez</div>
+            <div class="tarjeta-usuario-alias">@sofi_iguana</div>
+          </div>
+        </div>
+        <div class="tarjeta-usuario-funciones">
+          <a href="#">⚙️ Editar perfil</a>
+          <a href="#">🔔 Notificaciones</a>
+          <a href="#">🚪 Cerrar sesión</a>
+        </div>
+        <div class="tarjeta-usuario-etiqueta">Insignias</div>
+        <div class="tarjeta-usuario-insignias">
+          <span class="mini-insignia" title="Cría curiosa">🥚</span>
+          <span class="mini-insignia" title="Oyente fiel">🎧</span>
+          <span class="mini-insignia bloqueada" title="Voz del foro">💬</span>
+          <span class="mini-insignia bloqueada" title="Madruga-iguana">☀️</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="barra-superior">
+    <a href="videos.html">
+      <span>▶</span> Videos
+    </a>
+    <a href="podcasts.html">
+      <span>🎧</span> Podcasts
+    </a>
+    <a href="noticias.html">
+      <span>📄</span> Docs
+    </a>
+    <a href="foro.html">
+      <span>💬</span> Foro
+    </a>
+  </nav>
+
+  <div class="contenedor-principal">
+
+    <nav class="barra-lateral">
+      <a href="index.html" class="activo">
+        <span class="icono">🏠</span>
+        Inicio
+      </a>
+    </nav>
+
+    <main class="contenido">
+
+      <section>
+        <h2>Videos nuevos</h2>
+        <div class="cuadricula-tarjetas">
+          <article class="tarjeta">
+            <div class="miniatura">▶</div>
+            <div class="info">
+              <h3>No te lo esperabas</h3>
+              <p>Un adelanto del próximo episodio con la iguana y sus amigos.</p>
+            </div>
+          </article>
+          <article class="tarjeta">
+            <div class="miniatura">▶</div>
+            <div class="info">
+              <h3>Detrás de cámaras</h3>
+              <p>Cómo se dibuja a la iguana, paso a paso.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Episodios recientes</h2>
+        <ul class="lista-episodios">
+          <li class="episodio">
+            <div class="fila-titulo">
+              MP3 news
+              <span class="flecha">▽</span>
+            </div>
+            <div class="detalle">
+              <p>Las noticias más recientes del mundo de la iguana, en formato de audio.</p>
+            </div>
+          </li>
+          <li class="episodio">
+            <div class="fila-titulo">
+              Hablando con Dios
+              <span class="flecha">▽</span>
+            </div>
+            <div class="detalle">
+              <p>Una charla tranquila sobre preguntas grandes y respuestas sencillas.</p>
+            </div>
+          </li>
+          <li class="episodio">
+            <div class="fila-titulo">
+              Entre sillas
+              <span class="flecha">▽</span>
+            </div>
+            <div class="detalle">
+              <p>Conversaciones cortas grabadas en el recreo.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="pie-pagina">
+    Hecho con 🦎 por estudiantes de colegio — La web de la iguana
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

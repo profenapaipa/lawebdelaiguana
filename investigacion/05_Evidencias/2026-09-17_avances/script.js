@@ -1,20 +1,5 @@
-/* ===========================================================
-   subidas.js — probar un archivo antes de publicarlo
-   ===========================================================
-   Escrito por el equipo el 10 de septiembre y afinado el 17.
-   Aquí está la misma lógica, adaptada a la maquetación del boceto.
-   El menú de usuario se movió a plantilla.js, que es donde vive
-   ahora el encabezado.
 
-   QUÉ HACE Y QUÉ NO:
-   Lee el archivo que elijas y lo muestra en pantalla. Nada de esto
-   se guarda: URL.createObjectURL() crea una dirección temporal que
-   vive solo en este navegador y muere al recargar la página.
-   Sirve para ver cómo se vería, no para publicar.
-   =========================================================== */
-
-
-/* ===== Acordeón (foro y documentos de prueba) ===== */
+// ===== Acordeón (episodios, podcasts, documentos) =====
 function activarAcordeon(fila) {
   fila.addEventListener("click", () => {
     fila.parentElement.classList.toggle("abierto");
@@ -24,7 +9,35 @@ function activarAcordeon(fila) {
 document.querySelectorAll(".fila-titulo").forEach(activarAcordeon);
 
 
-/* ===== Utilidad: mostrar el nombre del archivo elegido ===== */
+// ===== Menú de usuario (tarjeta desplegable arriba a la derecha) =====
+const botonUsuario = document.getElementById("boton-usuario");
+const tarjetaUsuario = document.getElementById("tarjeta-usuario");
+
+if (botonUsuario && tarjetaUsuario) {
+  botonUsuario.addEventListener("click", (evento) => {
+    evento.stopPropagation();
+    const estabaAbierta = !tarjetaUsuario.hidden;
+    tarjetaUsuario.hidden = estabaAbierta;
+    botonUsuario.setAttribute("aria-expanded", String(!estabaAbierta));
+  });
+
+  document.addEventListener("click", (evento) => {
+    if (!tarjetaUsuario.hidden && !tarjetaUsuario.contains(evento.target)) {
+      tarjetaUsuario.hidden = true;
+      botonUsuario.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  document.addEventListener("keydown", (evento) => {
+    if (evento.key === "Escape") {
+      tarjetaUsuario.hidden = true;
+      botonUsuario.setAttribute("aria-expanded", "false");
+    }
+  });
+}
+
+
+// ===== Utilidad: mostrar el nombre del archivo elegido =====
 function mostrarNombreArchivo(input, etiqueta) {
   input.addEventListener("change", () => {
     etiqueta.textContent = input.files[0] ? input.files[0].name : "Ningún archivo elegido";
@@ -32,7 +45,7 @@ function mostrarNombreArchivo(input, etiqueta) {
 }
 
 
-/* ===== Probar un video (.mp4) ===== */
+// ===== Subir video (.mp4) =====
 const formVideo = document.getElementById("form-video");
 if (formVideo) {
   const inputVideo = document.getElementById("archivo-video");
@@ -43,22 +56,22 @@ if (formVideo) {
     evento.preventDefault();
     const archivo = inputVideo.files[0];
     if (!archivo) {
-      alert("Elige un archivo .mp4 antes de probarlo.");
+      alert("Elige un archivo .mp4 antes de subirlo.");
       return;
     }
     const titulo = document.getElementById("titulo-video").value.trim() || "Video sin título";
+    const url = URL.createObjectURL(archivo);
     const cuadricula = document.getElementById("cuadricula-videos");
 
     const tarjeta = document.createElement("article");
     tarjeta.className = "tarjeta";
-    tarjeta.dataset.buscable = window.normalizar(titulo);
     tarjeta.innerHTML = `
-      <video class="miniatura-video" controls src="${URL.createObjectURL(archivo)}"></video>
+      <video class="miniatura-video" controls src="${url}"></video>
       <div class="info">
-        <h3></h3>
-        <p>Solo en este computador · ${archivo.name}</p>
-      </div>`;
-    tarjeta.querySelector("h3").textContent = titulo;
+        <h3>${titulo}</h3>
+        <p>Subido por ti · ${archivo.name}</p>
+      </div>
+    `;
     cuadricula.prepend(tarjeta);
 
     formVideo.reset();
@@ -67,7 +80,7 @@ if (formVideo) {
 }
 
 
-/* ===== Probar un podcast (.mp3) ===== */
+// ===== Subir podcast (.mp3) =====
 const formPodcast = document.getElementById("form-podcast");
 if (formPodcast) {
   const inputPodcast = document.getElementById("archivo-podcast");
@@ -78,21 +91,27 @@ if (formPodcast) {
     evento.preventDefault();
     const archivo = inputPodcast.files[0];
     if (!archivo) {
-      alert("Elige un archivo .mp3 antes de probarlo.");
+      alert("Elige un archivo .mp3 antes de subirlo.");
       return;
     }
     const titulo = document.getElementById("titulo-podcast").value.trim() || "Episodio sin título";
+    const url = URL.createObjectURL(archivo);
     const lista = document.getElementById("lista-podcasts");
 
-    const tarjeta = document.createElement("article");
-    tarjeta.className = "tarjeta-audio";
-    tarjeta.dataset.buscable = window.normalizar(titulo);
-    tarjeta.innerHTML = `
-      <h3></h3>
-      <p>Solo en este computador · ${archivo.name}</p>
-      <audio controls style="width:100%" src="${URL.createObjectURL(archivo)}"></audio>`;
-    tarjeta.querySelector("h3").textContent = titulo;
-    lista.prepend(tarjeta);
+    const item = document.createElement("li");
+    item.className = "episodio";
+    item.innerHTML = `
+      <div class="fila-titulo">
+        ${titulo}
+        <span class="flecha">▽</span>
+      </div>
+      <div class="detalle">
+        <p>Subido por ti · ${archivo.name}</p>
+        <audio controls src="${url}"></audio>
+      </div>
+    `;
+    lista.prepend(item);
+    activarAcordeon(item.querySelector(".fila-titulo"));
 
     formPodcast.reset();
     nombrePodcast.textContent = "Ningún archivo elegido";
@@ -100,7 +119,7 @@ if (formPodcast) {
 }
 
 
-/* ===== Probar un documento de texto (.txt) ===== */
+// ===== Subir documento de texto (.txt) =====
 const formDocumento = document.getElementById("form-documento");
 if (formDocumento) {
   const inputDocumento = document.getElementById("archivo-documento");
@@ -111,7 +130,7 @@ if (formDocumento) {
     evento.preventDefault();
     const archivo = inputDocumento.files[0];
     if (!archivo) {
-      alert("Elige un archivo de texto antes de probarlo.");
+      alert("Elige un archivo de texto antes de subirlo.");
       return;
     }
     const titulo = document.getElementById("titulo-documento").value.trim() || "Documento sin título";
@@ -124,16 +143,13 @@ if (formDocumento) {
       item.className = "episodio";
       item.innerHTML = `
         <div class="fila-titulo">
-          <span class="titulo-doc"></span>
-          <span class="flecha" aria-hidden="true">▽</span>
+          ${titulo}
+          <span class="flecha">▽</span>
         </div>
-        <div class="detalle"><p></p></div>`;
-
-      // textContent y no innerHTML: si el .txt trae algo como <script>,
-      // se muestra como texto y no se ejecuta.
-      item.querySelector(".titulo-doc").textContent = titulo;
-      item.querySelector(".detalle p").textContent = lector.result;
-
+        <div class="detalle">
+          <p>${lector.result}</p>
+        </div>
+      `;
       lista.prepend(item);
       activarAcordeon(item.querySelector(".fila-titulo"));
     };

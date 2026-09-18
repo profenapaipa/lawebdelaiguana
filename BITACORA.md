@@ -36,7 +36,7 @@ Semáforo: 🟢 funciona · 🟡 a medias · 🔴 no empezado · ⏸ aplazado a 
 
 | Parte | Estado | Nota |
 |---|---|---|
-| Repositorio en GitHub | 🟡 | Falta el commit inicial y conectar con el remoto |
+| Repositorio en GitHub | 🟡 | Confirmado en local y remoto configurado; falta `git push` |
 | Publicación en GitHub Pages | 🔴 | **Bloqueado**, ver B-03 |
 | Barra superior + buscador | 🟢 | Una sola barra, con el buscador "¿En qué piensas?" |
 | Portada "Un café con la iguana" | 🟡 | Funciona; falta la ilustración de la iguana con la taza |
@@ -44,9 +44,9 @@ Semáforo: 🟢 funciona · 🟡 a medias · 🔴 no empezado · ⏸ aplazado a 
 | Sección *MP3 News* | 🟡 | Reproductor listo; faltan los enlaces de Spotify |
 | Sección *DOCS news* | 🟡 | Carrusel listo; falta definir qué son los DOCS |
 | Buscador | 🟢 | Filtra las tres secciones a la vez, sin importar tildes |
-| Página "El equipo" (icono 👤) | 🟢 | Con números que se cuentan solos desde los datos |
+| Menú de usuario con insignias | 🟢 | Reemplaza a la página de perfil (D-13) |
 | Foro | ⏸ | Fase 2, ver D-07 |
-| Estilos CSS | 🟢 | `estilos.css` del equipo + `boceto.css` |
+| Estilos CSS | 🟢 | `estilos.css` del avance del 17 + `boceto.css` |
 | Responsive (celular) | 🟡 | Rehecho para la barra nueva, sin probar en dispositivo real |
 | Subida de archivos | 🟡 | Previsualiza, no guarda. Avisado en pantalla |
 
@@ -83,8 +83,9 @@ carga al hacer clic. La página abre rápido incluso en los computadores del col
 Se descartó el perfil con usuario y contraseña. Los usuarios son menores de edad y guardar
 sus datos abre un problema de privacidad que el proyecto no puede resolver este semestre.
 *Consecuencia:* el entregable 3 del Formato 1 ("perfil personalizable") se reemplaza en
-esta fase por una página **"El equipo"** en el icono 👤 del boceto, y el perfil real se
-aplaza a la fase 2.
+esta fase por el icono 👤 del boceto, y el perfil real se aplaza a la fase 2.
+*Actualizado el 17 de septiembre:* ese icono terminó siendo un menú desplegable, no una
+página aparte. Ver D-13.
 
 **D-07 · El foro se aplaza a la fase 2** — 2026-09-03
 Requiere base de datos y sesión de usuario, y GitHub Pages no tiene servidor. La página
@@ -122,11 +123,43 @@ dirección temporal que muere al recargar la página. En vez de quitarlos, se de
 funcionando y se les puso un aviso arriba que explica qué hacen y qué no. Sirven para
 probar cómo se vería; la subida real es fase 2.
 
+**D-13 · La página de usuario se reemplaza por un menú desplegable** — 2026-09-17
+Decisión del equipo en el avance del 17. En vez de una página entera de perfil, todo
+vive ahora en el menú de la esquina superior derecha: nombre, tres funciones y las
+cuatro insignias en versión mini. Se eliminó `usuario.html`. Menos páginas que
+mantener y el perfil queda a un clic desde cualquier parte del sitio.
+
+**D-14 · El desplegable se abre con el atributo `hidden`, no con opacidad** — 2026-09-17
+Decisión del equipo. La versión del 10 de septiembre lo escondía con
+`opacity: 0; visibility: hidden`, lo que deja el elemento ocupando lugar para los
+lectores de pantalla. Con `hidden` el navegador lo saca de verdad. Es la forma
+correcta y además el JavaScript queda más corto.
+
 ---
 
 ## 3. Avances por sesión
 
-### 2026-09-17 — Integración del trabajo del 10 de septiembre
+### 2026-09-17 (tarde) — Unificación de las dos ramas
+El equipo entregó un segundo avance hecho en paralelo, partiendo del 10 de septiembre.
+Se unificó todo dejando que **mande lo del avance**:
+
+- Su `estilos.css` (511 líneas) es ahora **la** hoja de estilos del proyecto.
+- Se adoptaron su encabezado con `encabezado-marca`, su menú de usuario con
+  mini-insignias, su barra superior de 4 secciones y su barra lateral.
+- Se adoptó su manera de abrir el desplegable (ver D-14) y se descartó la mía.
+- Se eliminó `usuario.html`, como ellos decidieron (D-13).
+- Lo que se conservó de la integración anterior es solo lo que el boceto pide y ellos
+  aún no habían construido: buscador, portada, carruseles, contenido real y plantilla
+  única.
+- Se corrigieron tres errores del avance: la carpeta se llamaba `ccs` y el HTML
+  pedía `css`; el JavaScript seguía buscándose en `js/script.js`; y las dos imágenes
+  del encabezado no existían.
+- **Probado con un DOM real** (jsdom): las 5 páginas inyectan bien encabezado, barras
+  y pie; los 7 videos y los 4 podcasts se pintan; el buscador filtra sin tildes y
+  avisa cuando no hay resultados; el desplegable abre, cierra al hacer clic afuera y
+  cierra con Escape.
+
+### 2026-09-17 (mañana) — Integración del trabajo del 10 de septiembre
 - Se revisó todo lo entregado y se integró al proyecto. El original quedó guardado
   sin tocar en `investigacion/05_Evidencias/2026-09-10_avances/`.
 - **Se arreglaron los cuatro bloqueos abiertos** (B-01 a B-04), incluido el que
@@ -176,6 +209,8 @@ Objetivo: que exista una URL viva, aunque el sitio todavía se vea como antes.
 | P-04 | Definir qué son los "DOCS": ¿PDF propios, entradas de blog, enlaces? | Los dos | Siguiente sesión |
 | P-12 | Escribir una descripción real para los 6 cortometrajes: YouTube no las tiene y hoy dicen solo "Cortometraje del semillero" | Los dos | Siguiente sesión |
 | P-13 | Confirmar con el docente si se pueden publicar los nombres completos de los estudiantes en un sitio abierto a internet | Docente | Antes de publicar |
+| P-14 | Decidir si la barra lateral se queda: hoy ocupa 90 px para un solo enlace, "Inicio", que el logo ya hace | Los dos | Siguiente sesión |
+| P-15 | Las tres opciones del menú de usuario (Editar perfil, Notificaciones, Cerrar sesión) apuntan a `#`. Definir si se dejan como muestra o se ocultan hasta la fase 2 | Los dos | Siguiente sesión |
 | P-05 | Digitalizar la ilustración de la iguana con la taza de café (portada) | Por definir | Fase 2 |
 | P-06 | Digitalizar el logo de la iguana de la esquina superior izquierda | Por definir | Fase 2 |
 | P-07 | Llenar la ficha técnica en el formato oficial `.docx` | Los dos | Inmediato |
@@ -199,6 +234,8 @@ Se escriben como acción concreta, no como tema. De aquí salen los tutoriales.
 | B-05 | …abrir la página con doble clic ahora que el contenido se carga desde JSON: el navegador lo bloquea con `file://`, hay que usar Live Server | No | 🟡 Convivimos con esto |
 | B-06 | …que se abriera el menú de perfil: el CSS esperaba la clase `.activa` y ningún JavaScript se la ponía | No | ✅ Resuelto 17 sep |
 | B-07 | …decidir cuál de las tres barras de navegación mandaba: quedaron conviviendo el desplegable, la barra superior y la barra lateral, y con enlaces distintos en cada página | Sí | ✅ Resuelto 17 sep |
+| B-08 | …que cargaran los estilos del avance del 17: la carpeta quedó como `ccs` y el HTML pedía `css`. Una letra cambiada de lugar deja la página entera sin diseño | Sí | ✅ Resuelto 17 sep |
+| B-09 | …acordarnos de que el logo del colegio no se usa: volvió a aparecer en el encabezado, y además el archivo no estaba en la carpeta | No | ✅ Resuelto 17 sep |
 
 ---
 

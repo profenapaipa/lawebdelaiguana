@@ -171,31 +171,6 @@ async function pintarDocumentos(idContenedor, limite) {
 }
 
 
-/* ---------- CUÁNTAS COSAS HAY (página del equipo) ----------
-   Se cuentan solas desde los archivos de datos, para que el número
-   no quede desactualizado cuando se publique algo nuevo. */
-
-async function pintarEstadisticas() {
-  const casilla = document.getElementById("dato-videos");
-  if (!casilla) return;
-
-  const [videos, podcasts, documentos] = await Promise.all([
-    leerDatos("videos.json"),
-    leerDatos("podcasts.json"),
-    leerDatos("documentos.json"),
-  ]);
-
-  const escribir = (id, valor) => {
-    const elemento = document.getElementById(id);
-    if (elemento) elemento.textContent = valor ?? "—";
-  };
-
-  escribir("dato-videos", videos?.length);
-  escribir("dato-podcasts", podcasts?.length);
-  escribir("dato-documentos", documentos?.length);
-}
-
-
 /* ---------- Se pinta lo que cada página pida ---------- */
 
 pintarVideos("pista-videos", 6);
@@ -204,4 +179,3 @@ pintarPodcasts("pista-podcasts", 6);
 pintarPodcasts("lista-podcasts");
 pintarDocumentos("pista-documentos", 6);
 pintarDocumentos("cuadricula-documentos");
-pintarEstadisticas();

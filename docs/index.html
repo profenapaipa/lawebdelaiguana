@@ -5,31 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Videos, podcasts y documentos del Colegio INJUV, hechos por el Semillero de Tecnología Maker.">
   <title>La web de la iguana</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/estilos.css">
   <link rel="stylesheet" href="assets/css/boceto.css">
 </head>
 <body data-pagina="inicio">
 
-  <!-- La barra de arriba la inyecta assets/js/plantilla.js -->
+  <!-- El encabezado, las barras y el pie los inyecta assets/js/plantilla.js -->
 
   <main class="contenido">
 
-    <!-- ===== PORTADA ===== -->
     <section class="portada">
       <div class="ilustracion" aria-hidden="true">🦎</div>
       <div>
         <h1>Un café con la iguana</h1>
-        <p>Lo que hacemos en el colegio, contado por nosotros mismos.</p>
+        <p>Lo que cemhaos en el colegio, contado por nosotros mismos.</p>
       </div>
     </section>
 
-    <!-- ===== NEW VIDEOS ===== -->
-    <section class="seccion">
+    <section>
       <h2>New videos</h2>
       <div class="carrusel">
         <div class="pista" id="pista-videos"></div>
@@ -37,8 +33,7 @@
       </div>
     </section>
 
-    <!-- ===== MP3 NEWS ===== -->
-    <section class="seccion">
+    <section>
       <h2>MP3 News</h2>
       <div class="carrusel">
         <div class="pista" id="pista-podcasts"></div>
@@ -46,8 +41,7 @@
       </div>
     </section>
 
-    <!-- ===== DOCS NEWS ===== -->
-    <section class="seccion">
+    <section>
       <h2>DOCS news</h2>
       <div class="carrusel">
         <div class="pista" id="pista-documentos"></div>
@@ -56,8 +50,6 @@
     </section>
 
   </main>
-
-  <!-- El pie lo inyecta assets/js/plantilla.js -->
 
   <script src="assets/js/plantilla.js"></script>
   <script src="assets/js/contenido.js"></script>
