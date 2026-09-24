@@ -57,7 +57,7 @@ function construirEncabezado() {
           </div>
         </div>
         <div class="tarjeta-usuario-funciones">
-          <a href="#">⚙️ Editar perfil</a>
+          <a href="#" id="btn-editar-perfil">⚙️ Editar perfil</a>
           <a href="#">🔔 Notificaciones</a>
           <a href="#">🚪 Cerrar sesión</a>
         </div>
@@ -72,6 +72,22 @@ function construirEncabezado() {
     </div>`;
 
   document.body.prepend(encabezado);
+}
+
+
+/* ---------- Banner de "Un café con la iguana" / FilosofArTec ----------
+   Va justo debajo de la barra de búsqueda, arriba y centrado, tal
+   como se pidió. Es el arte que hizo el equipo en
+   "Logo e identidad de marca / Personajes / banner.jpeg". */
+function construirBanner() {
+  const banner = document.createElement("div");
+  banner.className = "banner-sitio";
+  banner.innerHTML = `
+    <img src="assets/img/banner-filosofartec.jpg"
+         alt="Un café con la iguana — FilosofArTec: el gato, el búho, el castor y la iguana">`;
+
+  const encabezado = document.querySelector(".encabezado");
+  encabezado.after(banner);
 }
 
 
@@ -97,9 +113,10 @@ function construirBarras() {
     </nav>`;
 
   // El <main> de la página se mete dentro del contenedor, al lado de la lateral.
+  // Se cuelga después de lo último que haya arriba (el banner, si existe).
   const principal = document.querySelector("main.contenido");
-  const encabezado = document.querySelector(".encabezado");
-  encabezado.after(superior);
+  const ultimoDeArriba = document.querySelector(".banner-sitio") || document.querySelector(".encabezado");
+  ultimoDeArriba.after(superior);
   superior.after(contenedor);
   contenedor.append(principal);
 }
@@ -185,6 +202,7 @@ function normalizar(texto) {
 window.normalizar = normalizar;
 
 construirEncabezado();
+construirBanner();
 construirBarras();
 construirPie();
 activarMenuUsuario();

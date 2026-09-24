@@ -10,7 +10,7 @@ Se actualiza **al final de cada sesión**, no al final del semestre.
 | Repositorio | `profenapaipa/lawebdelaiguana` (privado, 3 colaboradores) |
 | URL prevista | `https://profenapaipa.github.io/lawebdelaiguana/` |
 | Diseño de referencia | `investigacion/04_Desarrollo/2026-08-12_bocetos.jpg` |
-| Última actualización | 2026-09-17 |
+| Última actualización | 2026-09-24 |
 
 > **Regla del boceto:** cualquier cosa que se construya debe poder señalarse en la foto
 > del boceto. Si no está ahí, primero se dibuja y se anota como modificación (sección 6).
@@ -49,6 +49,8 @@ Semáforo: 🟢 funciona · 🟡 a medias · 🔴 no empezado · ⏸ aplazado a 
 | Estilos CSS | 🟢 | `estilos.css` del avance del 17 + `boceto.css` |
 | Responsive (celular) | 🟡 | Rehecho para la barra nueva, sin probar en dispositivo real |
 | Subida de archivos | 🟡 | Previsualiza, no guarda. Avisado en pantalla |
+| Identidad FilosofArTec | 🟢 | Favicon, banner y 4 personajes seleccionables, ver sesión del 24 sep |
+| Elegir personaje en el perfil | 🟢 | Modal con 4 opciones, se recuerda en ese navegador (localStorage) |
 
 ---
 
@@ -135,9 +137,54 @@ Decisión del equipo. La versión del 10 de septiembre lo escondía con
 lectores de pantalla. Con `hidden` el navegador lo saca de verdad. Es la forma
 correcta y además el JavaScript queda más corto.
 
+**D-15 · Los personajes se recortan del banner, no se piden aparte** — 2026-09-24
+El equipo trajo el arte de identidad de "Un café con la iguana" / FilosofArTec: un
+banner con los cuatro personajes juntos (gato, búho, castor, iguana), pero no venían
+recortados por separado. En vez de pedir cuatro archivos nuevos, se recortaron del
+banner con Python (Pillow) y se verificó cada recorte a ojo antes de usarlo. Ahorra
+una vuelta de ida y vuelta con el equipo de diseño.
+
+**D-16 · Elegir personaje se guarda con `localStorage`, no con una cuenta** — 2026-09-24
+Coherente con D-06 y D-13: seguimos sin login. La elección de personaje se recuerda
+en el navegador donde se elige, no en una cuenta. Si alguien abre el sitio desde el
+celular después de elegir en el computador del colegio, el celular le va a preguntar
+de nuevo. Es la limitación conocida de esta fase; una cuenta real es tema de la fase 2.
+
+**D-17 · Los personajes se guardan en JPG, no en PNG** — 2026-09-24
+Los primeros recortes se guardaron en PNG (sin pérdida) y pesaban ~130 KB cada uno,
+sin necesitarlo: no llevan transparencia, van sobre fondo sólido. Pasados a JPG con
+calidad 85 quedaron en ~14 KB. Con 4 personajes esa diferencia es casi medio
+megabyte menos que descargar en los computadores del colegio.
+
 ---
 
 ## 3. Avances por sesión
+
+### 2026-09-24 — Identidad de marca: favicon, banner y personajes
+El equipo trajo el trabajo de diseño de identidad ("Logo e identidad de marca"),
+con el logo de "Un café con la iguana", el banner de FilosofArTec con los cuatro
+personajes (gato, búho, castor, iguana) y bocetos de mascota. Se integraron tres
+pedidos concretos:
+
+- **Favicon:** el ícono de la taza de café pasó a ser el ícono de la pestaña del
+  navegador en las 6 páginas (recortado a cuadrado y en dos tamaños).
+- **Banner:** el arte de FilosofArTec con los cuatro personajes se agregó debajo de
+  la barra de búsqueda, arriba y centrado, en las 5 páginas con plantilla.
+- **Elegir personaje:** "Editar perfil", que antes no hacía nada (apuntaba a `#`),
+  ahora abre una ventana con los cuatro personajes. Al elegir uno, su imagen
+  reemplaza el emoji en el botón de usuario y en la tarjeta desplegable, y el
+  nombre de la tarjeta cambia a "Gato", "Búho", "Castor" o "Iguana". Queda
+  recordado en ese navegador (ver D-16).
+- Los cuatro personajes se recortaron del banner con Python, verificando cada
+  recorte antes de usarlo (D-15), y se guardaron livianos en JPG (D-17).
+- El arte original queda completo en
+  `investigacion/04_Desarrollo/Logo e identidad de marca/`, fuera del sitio
+  publicado (mismo criterio que D-08).
+- **Probado con jsdom:** el banner aparece debajo del encabezado y antes de la
+  barra superior en todas las páginas; el modal ofrece los 4 personajes; elegir
+  uno actualiza el botón de usuario, la tarjeta y el nombre, y queda guardado; al
+  volver a cargar otra página con una elección previa, se aplica sola; Escape
+  cierra el modal.
 
 ### 2026-09-17 (tarde) — Unificación de las dos ramas
 El equipo entregó un segundo avance hecho en paralelo, partiendo del 10 de septiembre.
@@ -218,6 +265,8 @@ Objetivo: que exista una URL viva, aunque el sitio todavía se vea como antes.
 | P-09 | Instalar la extensión **Live Server** en VS Code (ver B-05) | Los dos | Antes de la fase 1 |
 | P-10 | Subir las fotos de sesión a `05_Evidencias`, que está vacía | Los dos | Cada sesión |
 | P-11 | Probar el sitio en un celular real, no solo achicando la ventana | Los dos | Fase 3 |
+| P-16 | En "Logo e identidad de marca" quedaron 5 imágenes sin usar: el logo final "Un café con la iguana" (con texto), el boceto conceptual, dos referencias de mascota (una parece un personaje distinto al de FilosofArTec) y un mockup de merchandising. Decidir si alguna reemplaza al logo SVG actual del encabezado | Los dos | Siguiente sesión |
+| P-17 | Confirmar los 4 personajes elegidos (gato, búho, castor, iguana): el boceto de mascota mostraba también un computador/tele, un dúo marcador-esfero y un libro como ideas descartadas — verificar que no falte ninguno que sí querían incluir | Los dos | Siguiente sesión |
 
 ---
 

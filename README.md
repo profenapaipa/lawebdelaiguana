@@ -110,14 +110,21 @@ docs/
 │   ├── css/
 │   │   ├── estilos.css   la hoja del equipo: paleta, encabezado,
 │   │   │                 menú de usuario, tarjetas, zona de carga
-│   │   └── boceto.css    lo que agrega el dibujo del 12 de agosto:
-│   │                     buscador, portada, carruseles, reproductores
+│   │   ├── boceto.css    lo que agrega el dibujo del 12 de agosto:
+│   │   │                 buscador, portada, carruseles, reproductores
+│   │   └── extras.css    banner de FilosofArTec y el modal para
+│   │                     elegir personaje (24 de septiembre)
 │   ├── js/
 │   │   ├── plantilla.js  el encabezado, las barras y el pie, en un solo lugar
+│   │   ├── perfil.js     el modal para elegir personaje en el perfil
 │   │   ├── contenido.js  convierte los .json en tarjetas
 │   │   ├── carrusel.js   la flecha › de cada fila
 │   │   └── subidas.js    probar un archivo antes de publicarlo
 │   └── img/
+│       ├── favicon.png, favicon-32.png    ícono de la pestaña
+│       ├── banner-filosofartec.jpg        banner bajo el buscador
+│       └── personajes/   gato.jpg, buho.jpg, castor.jpg, iguana.jpg
+│                         — las opciones del selector de personaje
 │
 └── datos/              aquí se publica el contenido
 ```
@@ -141,11 +148,13 @@ sola la pestaña activa.
 | ✅ | 7 videos reales desde YouTube, con reproducción al hacer clic |
 | ✅ | El buscador filtra videos, podcasts y documentos a la vez, sin importar tildes |
 | ✅ | Menú de usuario con mini-insignias: abre, cierra afuera y con Escape |
+| ✅ | Elegir personaje (gato, búho, castor, iguana) desde "Editar perfil"; se recuerda en ese navegador |
+| ✅ | Favicon y banner de FilosofArTec en las 5 páginas |
 | ⏳ | Podcasts: las tarjetas existen, falta el enlace de Spotify |
 | ⏳ | Docs: falta definir si son PDF, blog o enlaces |
 | ❌ | Foro: necesita base de datos y login → fase 2 |
 | ❌ | Subir archivos: hoy solo se previsualizan, no se guardan → fase 2 |
-| ❌ | Menú de usuario e insignias: diseñados y abriendo, pero sin datos reales → fase 2 |
+| ❌ | Insignias: diseñadas y visibles, pero bloqueadas — necesitan cuenta real → fase 2 |
 
 Lo que no funciona está dicho en el propio sitio, no escondido.
 

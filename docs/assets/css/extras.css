@@ -1,0 +1,147 @@
+/* ===========================================================
+   extras.css — lo que se agregó el 24 de septiembre
+   ===========================================================
+   Tres cosas nuevas, ninguna toca estilos.css ni boceto.css:
+
+   1. El banner de "Un café con la iguana" / FilosofArTec, debajo
+      del buscador.
+   2. Los avatares de personaje (imagen en vez de emoji) en el
+      botón de usuario y en la tarjeta desplegable.
+   3. El modal para elegir personaje al editar el perfil.
+   =========================================================== */
+
+
+/* ===== 1. BANNER, debajo de la barra de búsqueda ===== */
+
+.banner-sitio {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0.9rem 1.2rem 0;
+}
+
+.banner-sitio img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+
+
+/* ===== 2. AVATAR DE PERSONAJE (reemplaza al emoji 🙂) ===== */
+
+.boton-usuario img,
+.avatar-mini img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+
+/* ===== 3. MODAL "Elige tu personaje" ===== */
+
+.modal-fondo {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(31, 25, 15, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+  z-index: 200;
+}
+
+.modal-fondo[hidden] { display: none; }
+
+.modal-perfil {
+  background-color: var(--arena-tarjeta);
+  border-radius: var(--radio);
+  box-shadow: 0 12px 32px rgba(31, 66, 42, 0.3);
+  padding: 1.4rem;
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+}
+
+.modal-perfil h2 {
+  font-size: 1.15rem;
+  margin-bottom: 0.3rem;
+  padding-right: 2rem;
+}
+
+.modal-perfil p {
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.modal-cerrar {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--arena);
+  color: var(--texto-oscuro);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modal-cerrar:hover { background-color: var(--verde-claro); }
+
+.grid-personajes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+}
+
+.opcion-personaje {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.8rem 0.5rem;
+  border: 2px solid var(--verde-claro);
+  border-radius: var(--radio);
+  background-color: var(--arena);
+  cursor: pointer;
+  font-family: var(--fuente-texto);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.opcion-personaje:hover {
+  border-color: var(--coral);
+  transform: translateY(-2px);
+}
+
+.opcion-personaje.seleccionado {
+  border-color: var(--verde-iguana);
+  background-color: var(--verde-claro);
+}
+
+.opcion-personaje img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--verde-selva);
+}
+
+.opcion-personaje span {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--verde-selva);
+}
+
+
+/* ===== 4. CELULAR ===== */
+
+@media (max-width: 760px) {
+  .banner-sitio { padding: 0.6rem 0.8rem 0; }
+  .grid-personajes { grid-template-columns: repeat(2, 1fr); }
+}
