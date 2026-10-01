@@ -631,3 +631,8 @@ p { margin: 0; }
   text-transform: uppercase;
   color: var(--cafe);
 }
+
+
+/* La mascota sola (página 404) no necesita ocupar toda la columna. */
+.mascotas:has(> figure:only-child) { justify-content: center; }
+.mascotas > figure:only-child { flex: 0 1 18rem; }

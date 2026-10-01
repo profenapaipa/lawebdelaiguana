@@ -580,3 +580,38 @@ code {
 .redes-iconos .red-enlace svg { width: 24px; height: 24px; }
 
 .boton.ambar { background: var(--ambar); color: var(--negro); }
+
+
+/* ===== 13. AVISO DEL CONCURSO (portada) ===== */
+
+.concurso-aviso {
+  margin-top: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: var(--blanco);
+  border: 2px solid var(--linea);
+  border-left: 10px solid var(--ambar);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra-dura);
+}
+
+.concurso-aviso > div { display: flex; flex-direction: column; align-items: flex-start; gap: 0.2rem; min-width: 0; flex: 1 1 14rem; }
+.concurso-aviso strong { font-family: var(--fuente-titulos); font-weight: 400; font-size: clamp(1.3rem, 3.2vw, 1.7rem); line-height: 1.1; letter-spacing: 0.02em; text-transform: uppercase; color: var(--cafe); }
+.concurso-aviso > div > span:last-child { font-size: 0.92rem; color: var(--texto-suave); }
+
+.boton-concurso {
+  background: var(--ambar);
+  color: var(--negro);
+  font-size: 1.15rem;
+  padding: 0.8rem 1.6rem;
+  animation: pulso-concurso 2s ease-in-out infinite;
+}
+
+@keyframes pulso-concurso {
+  0%, 100% { box-shadow: 3px 3px 0 var(--linea), 0 0 0 0 rgba(245, 176, 22, 0.65); }
+  50%      { box-shadow: 3px 3px 0 var(--linea), 0 0 0 14px rgba(245, 176, 22, 0); }
+}
