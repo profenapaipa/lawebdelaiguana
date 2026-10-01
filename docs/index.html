@@ -2,61 +2,135 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/png" href="assets/img/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Videos, podcasts y documentos del Colegio INJUV, hechos por el Semillero de Tecnología Maker.">
-  <title>La web de la iguana</title>
+  <meta name="theme-color" content="#257680">
+  <meta name="description" content="Cortometrajes, pódcast y noticias del Colegio INJUV, hechos por el Semillero Maker de Tecnología con Sentido.">
+  <title>Un café con la iguana — La web de la iguana</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Un café con la iguana">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:title" content="Un café con la iguana — La web de la iguana">
+  <meta property="og:description" content="Cortometrajes, pódcast y noticias del Colegio INJUV, hechos por el Semillero Maker de Tecnología con Sentido.">
+  <meta property="og:image" content="https://profenapaipa.github.io/lawebdelaiguana/assets/img/marca/og-imagen.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/estilos.css">
-  <link rel="stylesheet" href="assets/css/boceto.css">
-  <link rel="stylesheet" href="assets/css/extras.css">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/marca.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/componentes.css">
+  <link rel="stylesheet" href="assets/css/decoracion.css">
 </head>
 <body data-pagina="inicio">
 
-  <!-- El encabezado, las barras y el pie los inyecta assets/js/plantilla.js -->
+  <!-- El encabezado, la navegación y el pie los inyecta assets/js/plantilla.js -->
 
-  <main class="contenido">
+  <main id="contenido">
 
     <section class="portada">
-      <div class="ilustracion" aria-hidden="true">🦎</div>
-      <div>
-        <h1>Un café con la iguana</h1>
-        <p>Lo que cemhaos en el colegio, contado por nosotros mismos.</p>
+      <div class="contenedor portada-interior">
+        <div class="portada-texto">
+          <span class="portada-etiqueta">Colegio INJUV</span>
+          <h1>Un café <span>con la iguana</span></h1>
+          <p>Las voces y memorias del colegio, contadas por nosotros mismos.
+             La iguana observa, escucha y comparte.</p>
+          <div class="portada-acciones">
+            <a class="boton" href="cortometrajes.html">Ver cortometrajes</a>
+            <a class="boton secundario" href="podcasts.html">Escuchar pódcast</a>
+            <a class="boton ambar" href="https://forms.gle/qRnV6XoDmhLKKHCGA" target="_blank" rel="noopener">Inscríbete al concurso</a>
+          </div>
+          <div class="portada-redes">
+            <span>Síguenos</span>
+            <div data-redes="iconos"></div>
+          </div>
+        </div>
+
+        <!-- Tarjeta movible con los carteles del evento: se desliza sola
+             (assets/js/carrusel-portada.js). Para sumar un cartel: un <figure class="destacado"> más. -->
+        <div class="destacados" role="region" aria-roledescription="carrusel" aria-label="Carteles destacados">
+          <div class="destacados-pista">
+            <figure class="destacado">
+              <img src="assets/img/carteles/filosofartec-2026.jpg"
+                   alt="Cartel Filosofartec 2026, La odisea entre utopía y distopía. Nuevos pódcast, performance y cortometraje. Te esperamos el 1 de octubre.">
+            </figure>
+            <figure class="destacado">
+              <a href="https://forms.gle/qRnV6XoDmhLKKHCGA" target="_blank" rel="noopener"
+                 aria-label="Inscribirte al concurso Haz tu reel o TikTok (abre el formulario)">
+                <img src="assets/img/carteles/concurso-reel-tiktok.jpg" loading="lazy"
+                     alt="Convocatoria: concurso Haz tu reel o TikTok, ¿Qué es Filosofartec para ti? Graba, edita y postula hasta el 9 de octubre.">
+              </a>
+            </figure>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section>
-      <h2>New videos</h2>
-      <div class="carrusel">
-        <div class="pista" id="pista-videos"></div>
-        <button class="flecha-carrusel" type="button" aria-label="Ver más videos">›</button>
-      </div>
-    </section>
+    <div class="contenedor contenido">
 
-    <section>
-      <h2>MP3 News</h2>
-      <div class="carrusel">
-        <div class="pista" id="pista-podcasts"></div>
-        <button class="flecha-carrusel" type="button" aria-label="Ver más episodios">›</button>
-      </div>
-    </section>
+      <section id="personajes">
+        <div class="seccion-cabecera">
+          <h2>Personajes</h2>
+        </div>
+        <div class="cuadricula cuadricula-personajes">
+          <figure class="tarjeta personaje">
+            <img src="assets/img/personajes/iguana.png" loading="lazy" alt="La iguana, mascota y logo del canal">
+            <figcaption><strong>Iguana</strong><span>Mascota del canal</span></figcaption>
+          </figure>
+          <figure class="tarjeta personaje">
+            <img src="assets/img/personajes/buho.png" loading="lazy" alt="Owliver, el búho con gafas y bufanda">
+            <figcaption><strong>Owliver</strong><span>Búho</span></figcaption>
+          </figure>
+          <figure class="tarjeta personaje">
+            <img src="assets/img/personajes/gato.png" loading="lazy" alt="Kat, el gato artista con su paleta de pintura">
+            <figcaption><strong>Kat</strong><span>Gato</span></figcaption>
+          </figure>
+          <figure class="tarjeta personaje">
+            <img src="assets/img/personajes/castor.png" loading="lazy" alt="Nora, la castora con camiseta verde">
+            <figcaption><strong>Nora</strong><span>Castora</span></figcaption>
+          </figure>
+        </div>
+        <p class="creditos-personajes">
+          Estos personajes fueron creados por estudiantes del curso 9A del INJUV:
+          <strong>Deivyd Steban Vega Lopez</strong>, <strong>Lucia Salgado Bohorquez</strong> y
+          <strong>Sara Valeria Ordoñez Vargas</strong>. Son dibujos originales, hechos a mano y digitalizados,
+          que se conservan tal como fueron creados.
+        </p>
+      </section>
 
-    <section>
-      <h2>DOCS news</h2>
-      <div class="carrusel">
-        <div class="pista" id="pista-documentos"></div>
-        <button class="flecha-carrusel" type="button" aria-label="Ver más documentos">›</button>
-      </div>
-    </section>
+      <section>
+        <div class="seccion-cabecera">
+          <h2>Nuevos cortometrajes</h2>
+          <a class="ver-todo" href="cortometrajes.html">Ver todos →</a>
+        </div>
+        <div class="cuadricula" data-lista="cortometrajes" data-limite="3"></div>
+      </section>
 
+      <section>
+        <div class="seccion-cabecera">
+          <h2>Pódcast</h2>
+          <a class="ver-todo" href="podcasts.html">Ver todos →</a>
+        </div>
+        <div class="cuadricula" data-lista="podcasts" data-limite="3"></div>
+      </section>
+
+      <section>
+        <div class="seccion-cabecera">
+          <h2>Blog y noticias</h2>
+          <a class="ver-todo" href="documentos.html">Ver todos →</a>
+        </div>
+        <div class="cuadricula" data-lista="documentos" data-limite="3"></div>
+      </section>
+
+    </div>
   </main>
 
   <script src="assets/js/plantilla.js"></script>
   <script src="assets/js/perfil.js"></script>
   <script src="assets/js/contenido.js"></script>
-  <script src="assets/js/carrusel.js"></script>
+  <script src="assets/js/carrusel-portada.js"></script>
+  <script src="assets/js/decoracion.js"></script>
 </body>
 </html>

@@ -1,6 +1,21 @@
 [
   {
-    "titulo": "MP3 News",
+    "titulo": "Lo que guardan las paredes · Cap. 1: Los comienzos del INJUV",
+    "descripcion": "Con Luis Jorge García Camargo, rector del INJUV: los primeros años del colegio, contados desde su propia voz.",
+    "spotify": "1WhzZXtKIWtp6fW15C5a6K"
+  },
+  {
+    "titulo": "Lo que guardan las paredes · Cap. 2: Las voces que enseñaron",
+    "descripcion": "Los docentes que han hecho parte de la historia del INJUV recuerdan cómo ha sido enseñar en esta comunidad.",
+    "spotify": "4iSn7KcfZCAYj0aaT64IPi"
+  },
+  {
+    "titulo": "Lo que guardan las paredes · Cap. 3: La historia también se cuenta en primaria",
+    "descripcion": "Una mirada a Preescolar y Primaria con el rector Luis Jorge García Camargo y Angélica García, coordinadora de Preescolar.",
+    "spotify": "66Yixq8UZjvjUcMRMiMM6j"
+  },
+  {
+    "titulo": "Pódcast Filosofartec",
     "descripcion": "Las noticias más recientes del colegio, en formato de audio.",
     "spotify": null
   },

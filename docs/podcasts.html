@@ -2,57 +2,49 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/png" href="assets/img/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Todos los episodios de podcast del Semillero de Tecnología Maker.">
-  <title>Podcasts — La web de la iguana</title>
+  <meta name="theme-color" content="#257680">
+  <meta name="description" content="Todos los episodios del pódcast del Semillero Maker de Tecnología con Sentido.">
+  <title>Pódcast — La web de la iguana</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Un café con la iguana">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:title" content="Pódcast — La web de la iguana">
+  <meta property="og:description" content="Todos los episodios del pódcast del Semillero Maker de Tecnología con Sentido.">
+  <meta property="og:image" content="https://profenapaipa.github.io/lawebdelaiguana/assets/img/marca/og-imagen.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/estilos.css">
-  <link rel="stylesheet" href="assets/css/boceto.css">
-  <link rel="stylesheet" href="assets/css/extras.css">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/marca.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/componentes.css">
+  <link rel="stylesheet" href="assets/css/decoracion.css">
 </head>
 <body data-pagina="podcasts">
 
-  <main class="contenido">
-
-    <section>
-      <h2>Sube tu podcast</h2>
-      <div class="aviso">
-        <strong>Todavía no se guarda.</strong> El audio se escucha solo en este
-        computador y se pierde al recargar. La publicación real se hace en
-        <code>datos/podcasts.json</code>.
+  <main id="contenido">
+    <header class="cabecera-pagina">
+      <div class="contenedor">
+        <h1>Pódcast</h1>
+        <p>Conversaciones con sabor a pasillo escolar.</p>
+        <p class="cabecera-enlace"><a class="red-enlace" href="https://open.spotify.com/show/7bgpRR6qFIcA556c7X7OPI" target="_blank" rel="noopener" data-icono="spotify"><span>Pódcast Un café con la iguana - Spotify</span></a></p>
       </div>
-      <form class="zona-carga" id="form-podcast">
-        <label class="zona-carga-caja" for="archivo-podcast">
-          <span class="zona-carga-icono" aria-hidden="true">🎙️</span>
-          <span>Elige un archivo .mp3</span>
-        </label>
-        <input type="file" id="archivo-podcast" accept="audio/mp3,audio/mpeg,audio/*" hidden>
-        <input type="text" id="titulo-podcast" placeholder="Título del episodio">
-        <button type="submit">Probar</button>
-        <span class="zona-carga-nombre-archivo" id="nombre-archivo-podcast">Ningún archivo elegido</span>
-      </form>
-    </section>
+    </header>
 
-    <section>
-      <h2>Todos los episodios</h2>
-      <div class="aviso">
-        <strong>Falta conectar Spotify.</strong> Los episodios están anunciados pero
-        todavía no tienen su enlace. Al agregar el código del episodio en
-        <code>datos/podcasts.json</code>, el reproductor se activa solo.
-      </div>
-      <div class="cuadricula-tarjetas" id="lista-podcasts"></div>
-    </section>
-
+    <div class="contenedor contenido">
+      <section aria-label="Todos los episodios">
+        <div class="cuadricula" data-lista="podcasts"></div>
+      </section>
+    </div>
   </main>
 
   <script src="assets/js/plantilla.js"></script>
   <script src="assets/js/perfil.js"></script>
   <script src="assets/js/contenido.js"></script>
-  <script src="assets/js/carrusel.js"></script>
-  <script src="assets/js/subidas.js"></script>
+  <script src="assets/js/decoracion.js"></script>
 </body>
 </html>

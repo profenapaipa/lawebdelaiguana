@@ -1,16 +1,27 @@
 /* ===========================================================
    contenido.js — convierte los archivos de datos en tarjetas
    ===========================================================
-   Para publicar un video nuevo NO se toca ningún HTML:
-   se agregan cuatro líneas en datos/videos.json y ya aparece.
+   Para publicar un cortometraje nuevo NO se toca ningún HTML:
+   se agregan cuatro líneas en datos/cortometrajes.json y ya aparece.
 
-   OJO: esto usa fetch(), y fetch no funciona si abres el
-   archivo con doble clic (file://). Hay que abrirlo con
-   Live Server en VS Code: clic derecho > "Open with Live Server".
+   Cada página dice qué quiere con un atributo:
+       <div class="cuadricula" data-lista="cortometrajes" data-limite="3"></div>
+   - data-lista   cortometrajes | podcasts | documentos
+   - data-limite  (opcional) cuántas tarjetas muestra la portada.
+                  Las demás quedan escondidas y aparecen al buscar.
+
+   Para un tipo de contenido nuevo: agregar su entrada en LISTAS.
+
+   OJO: esto usa fetch(), y fetch no funciona si se abre el archivo
+   con doble clic (file://). Se abre con  "Iniciar sitio.bat"
+   (o con Live Server en VS Code).
    =========================================================== */
 
 const limpiar = (t) => String(t ?? "").replace(/[<>&"]/g, (c) =>
   ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;" }[c]));
+
+/* En los .json, lo que va entre **dos asteriscos** sale en negrilla. */
+const conNegrita = (t) => limpiar(t).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
 
 const buscable = (...partes) => window.normalizar(partes.join(" "));
 
@@ -25,31 +36,27 @@ async function leerDatos(archivo) {
   }
 }
 
-function avisoDeError(contenedor) {
-  contenedor.innerHTML = `<p class="vacio">No se pudieron cargar los datos.
-    Si abriste el archivo con doble clic, ábrelo con <strong>Live Server</strong>.</p>`;
-}
 
-
-/* ---------- VIDEOS (YouTube) ---------- */
+/* ---------- CORTOMETRAJES (YouTube) ---------- */
 
 function tarjetaVideo(video) {
-  const miniatura = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
   return `
-    <article class="tarjeta" data-buscable="${buscable(video.titulo, video.descripcion)}">
-      <button class="miniatura-yt" data-video="${video.id}"
+    <article class="tarjeta" data-buscable="${buscable(video.titulo, video.descripcion.replaceAll('**', ''))}">
+      <button class="miniatura-yt" type="button" data-video="${limpiar(video.id)}"
               aria-label="Reproducir ${limpiar(video.titulo)}">
-        <img src="${miniatura}" alt="" loading="lazy">
+        <img src="https://img.youtube.com/vi/${limpiar(video.id)}/hqdefault.jpg" alt="" loading="lazy">
+        <span class="play" aria-hidden="true"></span>
       </button>
       <div class="info">
         <h3>${limpiar(video.titulo)}</h3>
-        <p>${limpiar(video.descripcion)}</p>
+        ${video.premio ? `<span class="etiqueta premio">★ ${limpiar(video.premio)}</span>` : ""}
+        <p>${conNegrita(video.descripcion)}</p>
       </div>
     </article>`;
 }
 
-/* El video real se carga solo al hacer clic: así la página abre rápido
-   aunque haya diez videos, y la miniatura con el ▷ es la del boceto. */
+/* El cortometraje real se carga solo al tocar la miniatura: así la página abre
+   rápido aunque haya muchos cortometrajes. */
 function activarReproduccion(contenedor) {
   contenedor.addEventListener("click", (evento) => {
     const boton = evento.target.closest(".miniatura-yt");
@@ -64,21 +71,6 @@ function activarReproduccion(contenedor) {
   });
 }
 
-async function pintarVideos(idContenedor, limite) {
-  const contenedor = document.getElementById(idContenedor);
-  if (!contenedor) return;
-
-  const videos = await leerDatos("videos.json");
-  if (!videos) return avisoDeError(contenedor);
-
-  const lista = limite ? videos.slice(0, limite) : videos;
-  contenedor.innerHTML = lista.length
-    ? lista.map(tarjetaVideo).join("")
-    : `<p class="vacio">Todavía no hay videos publicados.</p>`;
-
-  activarReproduccion(contenedor);
-}
-
 
 /* ---------- PODCASTS (Spotify) ---------- */
 
@@ -91,61 +83,33 @@ function ondaDeSonido() {
 
 function tarjetaPodcast(ep) {
   const pendiente = !ep.spotify;
+  const reproductor = pendiente
+    ? `<div class="barra-audio"><span class="play" aria-hidden="true">▶</span>
+         <span class="onda" aria-hidden="true">${ondaDeSonido()}</span></div>`
+    // La vista previa de Spotify se muestra de una vez, sin pedir clic.
+    : `<iframe src="https://open.spotify.com/embed/episode/${limpiar(ep.spotify)}" height="152"
+               title="Escuchar ${limpiar(ep.titulo)} en Spotify" loading="lazy"
+               allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
   return `
-    <article class="tarjeta-audio ${pendiente ? "pendiente" : ""}"
+    <article class="tarjeta tarjeta-audio ${pendiente ? "pendiente" : ""}"
              data-buscable="${buscable(ep.titulo, ep.descripcion)}">
-      <h3>${limpiar(ep.titulo)} ${pendiente ? '<span class="etiqueta-pendiente">por publicar</span>' : ""}</h3>
-      <p>${limpiar(ep.descripcion)}</p>
-      ${pendiente
-        ? `<div class="barra-audio"><span class="play" aria-hidden="true">▷</span>
-             <span class="onda" aria-hidden="true">${ondaDeSonido()}</span></div>`
-        : `<button class="barra-audio" data-spotify="${limpiar(ep.spotify)}"
-                   aria-label="Escuchar ${limpiar(ep.titulo)}">
-             <span class="play" aria-hidden="true">▷</span>
-             <span class="onda" aria-hidden="true">${ondaDeSonido()}</span>
-           </button>`}
+      <div class="info">
+        ${pendiente ? '<span class="etiqueta">Próximamente</span>' : ""}
+        <h3>${limpiar(ep.titulo)}</h3>
+        <p>${limpiar(ep.descripcion)}</p>
+      </div>
+      ${reproductor}
     </article>`;
-}
-
-function activarEscucha(contenedor) {
-  contenedor.addEventListener("click", (evento) => {
-    const boton = evento.target.closest(".barra-audio[data-spotify]");
-    if (!boton) return;
-
-    const marco = document.createElement("iframe");
-    marco.src = `https://open.spotify.com/embed/episode/${boton.dataset.spotify}`;
-    marco.title = boton.getAttribute("aria-label");
-    marco.height = "152";
-    marco.style.border = "0";
-    marco.style.width = "100%";
-    marco.allow = "clipboard-write; encrypted-media; fullscreen; picture-in-picture";
-    boton.replaceWith(marco);
-  });
-}
-
-async function pintarPodcasts(idContenedor, limite) {
-  const contenedor = document.getElementById(idContenedor);
-  if (!contenedor) return;
-
-  const episodios = await leerDatos("podcasts.json");
-  if (!episodios) return avisoDeError(contenedor);
-
-  const lista = limite ? episodios.slice(0, limite) : episodios;
-  contenedor.innerHTML = lista.length
-    ? lista.map(tarjetaPodcast).join("")
-    : `<p class="vacio">Todavía no hay episodios publicados.</p>`;
-
-  activarEscucha(contenedor);
 }
 
 
 /* ---------- DOCUMENTOS ---------- */
 
 function tarjetaDocumento(doc) {
-  const lineas = "<i></i>".repeat(7);
   const cuerpo = `
-    <div class="lineas" aria-hidden="true">${lineas}</div>
+    <div class="lineas" aria-hidden="true">${"<i></i>".repeat(6)}</div>
     <div class="info">
+      ${doc.enlace ? "" : '<span class="etiqueta">Próximamente</span>'}
       <h3>${limpiar(doc.titulo)}</h3>
       <p>${limpiar(doc.descripcion)}</p>
     </div>`;
@@ -157,25 +121,51 @@ function tarjetaDocumento(doc) {
           data-buscable="${buscable(doc.titulo, doc.descripcion)}">${cuerpo}</article>`;
 }
 
-async function pintarDocumentos(idContenedor, limite) {
-  const contenedor = document.getElementById(idContenedor);
-  if (!contenedor) return;
 
-  const documentos = await leerDatos("documentos.json");
-  if (!documentos) return avisoDeError(contenedor);
+/* ---------- Un tipo de contenido = un archivo + una tarjeta ---------- */
 
-  const lista = limite ? documentos.slice(0, limite) : documentos;
+const LISTAS = {
+  cortometrajes: {
+    archivo: "cortometrajes.json",
+    tarjeta: tarjetaVideo,
+    activar: activarReproduccion,
+    vacio: "Próximamente: nuevos cortometrajes.",
+  },
+  podcasts: {
+    archivo: "podcasts.json",
+    tarjeta: tarjetaPodcast,
+    vacio: "Próximamente: nuevos episodios.",
+  },
+  documentos: {
+    archivo: "documentos.json",
+    tarjeta: tarjetaDocumento,
+    vacio: "Próximamente: nuevos documentos.",
+  },
+};
+
+async function pintarLista(contenedor) {
+  const tipo = LISTAS[contenedor.dataset.lista];
+  if (!tipo) return;
+
+  const limite = Number(contenedor.dataset.limite) || Infinity;
+  const datos = await leerDatos(tipo.archivo);
+
+  if (!datos) {
+    contenedor.innerHTML = `<p class="vacio">No pudimos cargar este contenido. Recarga la página o vuelve a intentarlo en un rato.</p>`;
+    return;
+  }
+
+  const lista = datos; // el orden es el del archivo: lo destacado va primero
+
   contenedor.innerHTML = lista.length
-    ? lista.map(tarjetaDocumento).join("")
-    : `<p class="vacio">Todavía no hay documentos publicados.</p>`;
+    ? lista.map(tipo.tarjeta).join("")
+    : `<p class="vacio">${tipo.vacio}</p>`;
+
+  // Lo que pasa del límite se esconde, salvo que alguien lo busque (ver componentes.css).
+  [...contenedor.children].slice(limite).forEach((tarjeta) => tarjeta.classList.add("extra"));
+
+  tipo.activar?.(contenedor);
 }
 
-
-/* ---------- Se pinta lo que cada página pida ---------- */
-
-pintarVideos("pista-videos", 6);
-pintarVideos("cuadricula-videos");
-pintarPodcasts("pista-podcasts", 6);
-pintarPodcasts("lista-podcasts");
-pintarDocumentos("pista-documentos", 6);
-pintarDocumentos("cuadricula-documentos");
+Promise.all([...document.querySelectorAll("[data-lista]")].map(pintarLista))
+  .then(() => window.aplicarBusqueda());

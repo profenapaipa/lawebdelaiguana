@@ -32,14 +32,14 @@ del equipo quedarían descargables desde internet.
 
 ## Cómo abrir el sitio para trabajar
 
-El contenido se carga desde archivos `.json` con `fetch()`, y **`fetch` no funciona
-abriendo el archivo con doble clic** (el navegador lo bloquea con `file://`).
+**Doble clic en `Iniciar sitio.bat`** (en la carpeta principal). Enciende un
+servidor local y abre el navegador en `http://localhost:8080`. No hay que abrir
+`index.html` a mano ni instalar nada: solo usa PowerShell, que ya trae Windows.
+Se cierra con Ctrl+C o cerrando la ventana negra.
 
-1. Abrir la carpeta del proyecto en **Visual Studio Code**.
-2. Instalar la extensión **Live Server** (de Ritwick Dey), una sola vez.
-3. Clic derecho sobre `docs/index.html` → **Open with Live Server**.
-
-Si abren con doble clic, van a ver la página sin ninguna tarjeta y un aviso.
+¿Por qué hace falta? El contenido se carga desde `.json` con `fetch()`, y el
+navegador lo bloquea si se abre un archivo con doble clic (`file://`).
+(Live Server de VS Code sigue sirviendo, si prefieren.)
 
 ---
 
@@ -97,46 +97,50 @@ Con `enlace` en `null`, la tarjeta se muestra pero no lleva a ninguna parte.
 ## Cómo está armado el sitio
 
 ```
-docs/
-├── index.html          portada: las tres secciones del boceto
-├── videos.html         todos los videos
-├── podcasts.html       todos los episodios
-├── documentos.html     docs y noticias
-├── foro.html           en construcción (fase 2)
-├── 404.html            página no encontrada
-├── .nojekyll           le dice a GitHub que no procese nada
-│
+Iniciar sitio.bat        doble clic: enciende el sitio local
+herramientas/servidor.ps1   el servidor que usa el .bat
+Logos finales 2026/      logos oficiales (originales, no se editan)
+Mascotas/                mascotas oficiales dibujadas a mano (originales)
+Manual de Marca.pdf
+
+docs/                    EL SITIO (lo único que se publica)
+├── index.html, videos.html, podcasts.html, documentos.html,
+│   foro.html, nosotros.html, 404.html
 ├── assets/
 │   ├── css/
-│   │   ├── estilos.css   la hoja del equipo: paleta, encabezado,
-│   │   │                 menú de usuario, tarjetas, zona de carga
-│   │   ├── boceto.css    lo que agrega el dibujo del 12 de agosto:
-│   │   │                 buscador, portada, carruseles, reproductores
-│   │   └── extras.css    banner de FilosofArTec y el modal para
-│   │                     elegir personaje (24 de septiembre)
+│   │   ├── marca.css        colores y tipografías del manual (único lugar)
+│   │   ├── base.css         estructura: encabezado, navegación, pie, portada
+│   │   └── componentes.css  tarjetas, reproductores, acordeones, modal
 │   ├── js/
-│   │   ├── plantilla.js  el encabezado, las barras y el pie, en un solo lugar
-│   │   ├── perfil.js     el modal para elegir personaje en el perfil
-│   │   ├── contenido.js  convierte los .json en tarjetas
-│   │   ├── carrusel.js   la flecha › de cada fila
-│   │   └── subidas.js    probar un archivo antes de publicarlo
+│   │   ├── plantilla.js     encabezado, navegación, buscador y pie (una vez)
+│   │   ├── contenido.js     convierte datos/*.json en tarjetas
+│   │   ├── carrusel-portada.js  la tarjeta movible de la portada
+│   │   ├── perfil.js        elegir personaje en el perfil
+│   │   └── subidas.js       probar un archivo antes de publicarlo
 │   └── img/
-│       ├── favicon.png, favicon-32.png    ícono de la pestaña
-│       ├── banner-filosofartec.jpg        banner bajo el buscador
-│       └── personajes/   gato.jpg, buho.jpg, castor.jpg, iguana.jpg
-│                         — las opciones del selector de personaje
-│
-└── datos/              aquí se publica el contenido
+│       ├── marca/           logos oficiales ya recortados con fondo transparente
+│       ├── personajes/      buho, gato, castor (oficiales) e iguana (del logo)
+│       └── favicon*.png, apple-touch-icon.png   la taza oficial
+└── datos/                   aquí se publica el contenido
 ```
 
-**Dos ideas sostienen todo esto:**
+**Ideas que sostienen todo esto:**
 
-1. **El encabezado se escribe una sola vez** (`plantilla.js`) y se inyecta en las 5
-   páginas. Antes estaba copiado 5 veces: cambiar un enlace eran 5 ediciones.
-2. **El contenido vive en `datos/`, no en el HTML.** Publicar deja de ser programar.
-
-Cada página dice quién es con `<body data-pagina="videos">`, y así la barra marca
-sola la pestaña activa.
+1. **Una sola navegación.** Barra superior en computador, barra inferior en
+   celular (es el mismo `<nav>`; lo decide `base.css`). La página tiene un solo
+   desplazamiento: no hay carruseles laterales ni cajas con barra propia.
+2. **Marca en un solo archivo.** `marca.css` define los colores del manual; las
+   demás hojas usan variables, nunca un color suelto. Las tipografías son Anton
+   (principal) y Boston Angel (secundaria). Boston Angel no está en Google
+   Fonts: si no está instalada se usa Playfair Display. Para que la vean todos,
+   subir el archivo a `assets/fonts/` y agregar un `src: url(...)` en `marca.css`.
+3. **El encabezado y el pie se escriben una vez** (`plantilla.js`). Sección
+   nueva = copiar un `.html` y sumarla a `SECCIONES`.
+4. **El contenido vive en `datos/`, no en el HTML.** Una lista se pone con
+   `<div class="cuadricula" data-lista="videos" data-limite="3">`.
+5. **Logos y mascotas oficiales no se retocan.** Las versiones de `docs/assets/img`
+   son los mismos dibujos con el fondo blanco quitado; los originales siguen
+   intactos en sus carpetas.
 
 ---
 
@@ -144,12 +148,12 @@ sola la pestaña activa.
 
 | | |
 |---|---|
-| ✅ | Portada, barra superior, buscador, carruseles |
+| ✅ | Portada con mascotas oficiales, navegación única (arriba en PC, abajo en celular), buscador |
 | ✅ | 7 videos reales desde YouTube, con reproducción al hacer clic |
 | ✅ | El buscador filtra videos, podcasts y documentos a la vez, sin importar tildes |
 | ✅ | Menú de usuario con mini-insignias: abre, cierra afuera y con Escape |
 | ✅ | Elegir personaje (gato, búho, castor, iguana) desde "Editar perfil"; se recuerda en ese navegador |
-| ✅ | Favicon y banner de FilosofArTec en las 5 páginas |
+| ✅ | Favicon (la taza oficial) y mascotas oficiales en la portada |
 | ⏳ | Podcasts: las tarjetas existen, falta el enlace de Spotify |
 | ⏳ | Docs: falta definir si son PDF, blog o enlaces |
 | ❌ | Foro: necesita base de datos y login → fase 2 |

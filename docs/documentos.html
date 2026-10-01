@@ -2,67 +2,48 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/png" href="assets/img/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Documentos, guías y noticias del Semillero de Tecnología Maker.">
-  <title>Docs — La web de la iguana</title>
+  <meta name="theme-color" content="#257680">
+  <meta name="description" content="Blog y noticias del Semillero Maker de Tecnología con Sentido.">
+  <title>Blog y noticias — La web de la iguana</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Un café con la iguana">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:title" content="Blog y noticias — La web de la iguana">
+  <meta property="og:description" content="Blog y noticias del Semillero Maker de Tecnología con Sentido.">
+  <meta property="og:image" content="https://profenapaipa.github.io/lawebdelaiguana/assets/img/marca/og-imagen.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/estilos.css">
-  <link rel="stylesheet" href="assets/css/boceto.css">
-  <link rel="stylesheet" href="assets/css/extras.css">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/marca.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/componentes.css">
+  <link rel="stylesheet" href="assets/css/decoracion.css">
 </head>
 <body data-pagina="documentos">
 
-  <main class="contenido">
-
-    <section>
-      <h2>Sube un documento</h2>
-      <div class="aviso">
-        <strong>Todavía no se guarda.</strong> El texto se lee y se muestra en este
-        computador, pero se pierde al recargar la página.
+  <main id="contenido">
+    <header class="cabecera-pagina">
+      <div class="contenedor">
+        <h1>Blog y noticias</h1>
+        <p>Lo que escribimos y lo que pasa en el colegio.</p>
       </div>
-      <form class="zona-carga" id="form-documento">
-        <label class="zona-carga-caja" for="archivo-documento">
-          <span class="zona-carga-icono" aria-hidden="true">📎</span>
-          <span>Elige un archivo de texto (.txt)</span>
-        </label>
-        <input type="file" id="archivo-documento" accept=".txt,text/plain" hidden>
-        <input type="text" id="titulo-documento" placeholder="Título del documento">
-        <button type="submit">Probar</button>
-        <span class="zona-carga-nombre-archivo" id="nombre-archivo-documento">Ningún archivo elegido</span>
-      </form>
-    </section>
+    </header>
 
-    <section>
-      <h2>Docs y noticias</h2>
-      <div class="aviso">
-        <strong>Falta definir qué va aquí.</strong> Los tres de abajo son de ejemplo.
-        Hay que decidir si los DOCS son archivos PDF que ustedes escriben, entradas
-        tipo blog o enlaces a otras páginas, y cambiar
-        <code>datos/documentos.json</code> según eso.
-      </div>
-      <div class="cuadricula-tarjetas" id="cuadricula-documentos"></div>
-    </section>
-
-    <section>
-      <h2>Tus documentos subidos</h2>
-      <p style="color:var(--texto-suave); margin-bottom:1rem;">
-        Haz clic sobre un documento para leer su contenido.
-      </p>
-      <ul class="lista-episodios" id="lista-documentos">
-        <!-- aquí se agregan los documentos de prueba -->
-      </ul>
-    </section>
-
+    <div class="contenedor contenido">
+      <section aria-label="Blog y noticias">
+        <div class="cuadricula" data-lista="documentos"></div>
+      </section>
+    </div>
   </main>
 
   <script src="assets/js/plantilla.js"></script>
   <script src="assets/js/perfil.js"></script>
   <script src="assets/js/contenido.js"></script>
-  <script src="assets/js/carrusel.js"></script>
-  <script src="assets/js/subidas.js"></script>
+  <script src="assets/js/decoracion.js"></script>
 </body>
 </html>

@@ -2,71 +2,54 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/png" href="assets/img/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="El foro de La web de la iguana, en construcción.">
+  <meta name="theme-color" content="#257680">
+  <meta name="description" content="El foro de la comunidad del Colegio INJUV (próximamente).">
   <title>Foro — La web de la iguana</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Un café con la iguana">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:title" content="Foro — La web de la iguana">
+  <meta property="og:description" content="El foro de la comunidad del Colegio INJUV (próximamente).">
+  <meta property="og:image" content="https://profenapaipa.github.io/lawebdelaiguana/assets/img/marca/og-imagen.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/estilos.css">
-  <link rel="stylesheet" href="assets/css/boceto.css">
-  <link rel="stylesheet" href="assets/css/extras.css">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/marca.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/componentes.css">
+  <link rel="stylesheet" href="assets/css/decoracion.css">
 </head>
 <body data-pagina="foro">
 
-  <main class="contenido">
-    <section>
-      <h2>Foro de la comunidad</h2>
-
-      <div class="aviso">
-        <strong>Esta parte todavía no funciona, y sabemos por qué.</strong><br>
-        Un foro necesita guardar lo que la gente escribe en un servidor, para que un
-        mensaje escrito en un celular se vea desde otro computador. GitHub Pages solo
-        entrega archivos: no tiene dónde guardar nada. Por eso el foro necesita base
-        de datos e inicio de sesión, y eso es la <strong>fase 2</strong>.
+  <main id="contenido">
+    <header class="cabecera-pagina">
+      <div class="contenedor">
+        <h1>Foro</h1>
+        <p>El lugar para opinar, preguntar y debatir con libertad y respeto.</p>
       </div>
+    </header>
 
-      <p style="color:var(--texto-suave); margin-bottom:1rem;">
-        Así se va a ver cuando funcione. Estas conversaciones son de ejemplo:
-        todavía no se puede escribir en ellas.
-      </p>
-
-      <ul class="lista-episodios">
-        <li class="episodio">
-          <div class="fila-titulo">
-            ¿Cuál fue tu episodio favorito?
-            <span class="flecha" aria-hidden="true">▽</span>
-          </div>
-          <div class="detalle">
-            <p>Ejemplo de conversación. Todavía no se puede responder.</p>
-          </div>
-        </li>
-        <li class="episodio">
-          <div class="fila-titulo">
-            Ideas para el próximo video
-            <span class="flecha" aria-hidden="true">▽</span>
-          </div>
-          <div class="detalle">
-            <p>Ejemplo de conversación. Todavía no se puede responder.</p>
-          </div>
-        </li>
-        <li class="episodio">
-          <div class="fila-titulo">
-            Presenta a tu propia iguana
-            <span class="flecha" aria-hidden="true">▽</span>
-          </div>
-          <div class="detalle">
-            <p>Ejemplo de conversación. Todavía no se puede responder.</p>
-          </div>
-        </li>
-      </ul>
-    </section>
+    <div class="contenedor contenido">
+      <section class="proximamente-bloque">
+        <span class="etiqueta">Próximamente</span>
+        <h2>El foro llega pronto</h2>
+        <p>Estamos preparando este espacio para que toda la comunidad educativa opine, pregunte y debata
+           con libertad y respeto. Mientras tanto, te esperamos en los cortometrajes y los pódcast.</p>
+        <div class="portada-acciones">
+          <a class="boton" href="cortometrajes.html">Ver cortometrajes</a>
+          <a class="boton secundario" href="podcasts.html">Escuchar pódcast</a>
+        </div>
+      </section>
+    </div>
   </main>
 
   <script src="assets/js/plantilla.js"></script>
   <script src="assets/js/perfil.js"></script>
-  <script src="assets/js/subidas.js"></script>
+  <script src="assets/js/decoracion.js"></script>
 </body>
 </html>

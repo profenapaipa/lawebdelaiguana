@@ -4,19 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#257680">
-  <meta name="description" content="La página que buscas no existe.">
-  <title>Página no encontrada — La web de la iguana</title>
+  <meta name="description" content="Todos los cortometrajes del Semillero Maker de Tecnología con Sentido.">
+  <title>Cortometrajes — La web de la iguana</title>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Un café con la iguana">
   <meta property="og:locale" content="es_CO">
-  <meta property="og:title" content="Página no encontrada — La web de la iguana">
-  <meta property="og:description" content="La página que buscas no existe.">
+  <meta property="og:title" content="Cortometrajes — La web de la iguana">
+  <meta property="og:description" content="Todos los cortometrajes del Semillero Maker de Tecnología con Sentido.">
   <meta property="og:image" content="https://profenapaipa.github.io/lawebdelaiguana/assets/img/marca/og-imagen.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <script>
-    /* En GitHub Pages el sitio vive en /lawebdelaiguana/; en local, en la raíz. */
-    document.write('<base href="' + (location.hostname.endsWith("github.io") ? "/lawebdelaiguana/" : "/") + '">');
-  </script>
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon.png">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
@@ -28,26 +24,27 @@
   <link rel="stylesheet" href="assets/css/componentes.css">
   <link rel="stylesheet" href="assets/css/decoracion.css">
 </head>
-<body data-pagina="404">
+<body data-pagina="cortometrajes">
 
   <main id="contenido">
-    <section class="portada">
-      <div class="contenedor portada-interior">
-        <div class="portada-texto">
-          <span class="portada-etiqueta">Error 404</span>
-          <h1>Aquí <span>no hay nada</span></h1>
-          <p>La iguana buscó esta página y no la encontró.</p>
-          <div class="portada-acciones"><a class="boton" href="index.html">Volver al inicio</a></div>
-        </div>
-        <div class="mascotas">
-          <figure><img src="assets/img/personajes/iguana.png" alt="La iguana"></figure>
-        </div>
+    <header class="cabecera-pagina">
+      <div class="contenedor">
+        <h1>Cortometrajes</h1>
+        <p>Historias del colegio contadas en pantalla por nuestros estudiantes.</p>
+        <p class="cabecera-enlace"><a class="red-enlace" href="https://www.youtube.com/@Uncaf%C3%A9conlaiguana" target="_blank" rel="noopener" data-icono="youtube"><span>@Uncaféconlaiguana</span></a></p>
       </div>
-    </section>
+    </header>
+
+    <div class="contenedor contenido">
+      <section aria-label="Todos los cortometrajes">
+        <div class="cuadricula" data-lista="cortometrajes"></div>
+      </section>
+    </div>
   </main>
 
   <script src="assets/js/plantilla.js"></script>
   <script src="assets/js/perfil.js"></script>
+  <script src="assets/js/contenido.js"></script>
   <script src="assets/js/decoracion.js"></script>
 </body>
 </html>

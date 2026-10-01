@@ -2,9 +2,7 @@
    subidas.js — probar un archivo antes de publicarlo
    ===========================================================
    Escrito por el equipo el 10 de septiembre y afinado el 17.
-   Aquí está la misma lógica, adaptada a la maquetación del boceto.
-   El menú de usuario se movió a plantilla.js, que es donde vive
-   ahora el encabezado.
+   Misma lógica, adaptada a la nueva estructura.
 
    QUÉ HACE Y QUÉ NO:
    Lee el archivo que elijas y lo muestra en pantalla. Nada de esto
@@ -13,133 +11,93 @@
    Sirve para ver cómo se vería, no para publicar.
    =========================================================== */
 
+/* Cada formulario de prueba (video, podcast, documento) hace lo mismo:
+   mostrar el nombre del archivo, pedir título y crear una tarjeta en
+   la lista de pruebas. Solo cambia la tarjeta. */
+function activarPrueba({ tipo, sinTitulo, avisoSinArchivo, crearTarjeta, leerComoTexto }) {
+  const formulario = document.getElementById(`form-${tipo}`);
+  if (!formulario) return;
 
-/* ===== Acordeón (foro y documentos de prueba) ===== */
-function activarAcordeon(fila) {
-  fila.addEventListener("click", () => {
-    fila.parentElement.classList.toggle("abierto");
+  const entrada = document.getElementById(`archivo-${tipo}`);
+  const nombre = document.getElementById(`nombre-archivo-${tipo}`);
+  const pruebas = document.getElementById(`pruebas-${tipo}`);
+
+  entrada.addEventListener("change", () => {
+    nombre.textContent = entrada.files[0] ? entrada.files[0].name : "Ningún archivo elegido";
   });
-}
 
-document.querySelectorAll(".fila-titulo").forEach(activarAcordeon);
-
-
-/* ===== Utilidad: mostrar el nombre del archivo elegido ===== */
-function mostrarNombreArchivo(input, etiqueta) {
-  input.addEventListener("change", () => {
-    etiqueta.textContent = input.files[0] ? input.files[0].name : "Ningún archivo elegido";
-  });
-}
-
-
-/* ===== Probar un video (.mp4) ===== */
-const formVideo = document.getElementById("form-video");
-if (formVideo) {
-  const inputVideo = document.getElementById("archivo-video");
-  const nombreVideo = document.getElementById("nombre-archivo-video");
-  mostrarNombreArchivo(inputVideo, nombreVideo);
-
-  formVideo.addEventListener("submit", (evento) => {
+  formulario.addEventListener("submit", (evento) => {
     evento.preventDefault();
-    const archivo = inputVideo.files[0];
-    if (!archivo) {
-      alert("Elige un archivo .mp4 antes de probarlo.");
-      return;
-    }
-    const titulo = document.getElementById("titulo-video").value.trim() || "Video sin título";
-    const cuadricula = document.getElementById("cuadricula-videos");
+    const archivo = entrada.files[0];
+    if (!archivo) return alert(avisoSinArchivo);
 
-    const tarjeta = document.createElement("article");
-    tarjeta.className = "tarjeta";
-    tarjeta.dataset.buscable = window.normalizar(titulo);
-    tarjeta.innerHTML = `
-      <video class="miniatura-video" controls src="${URL.createObjectURL(archivo)}"></video>
-      <div class="info">
-        <h3></h3>
-        <p>Solo en este computador · ${archivo.name}</p>
-      </div>`;
-    tarjeta.querySelector("h3").textContent = titulo;
-    cuadricula.prepend(tarjeta);
+    const titulo = document.getElementById(`titulo-${tipo}`).value.trim() || sinTitulo;
 
-    formVideo.reset();
-    nombreVideo.textContent = "Ningún archivo elegido";
-  });
-}
-
-
-/* ===== Probar un podcast (.mp3) ===== */
-const formPodcast = document.getElementById("form-podcast");
-if (formPodcast) {
-  const inputPodcast = document.getElementById("archivo-podcast");
-  const nombrePodcast = document.getElementById("nombre-archivo-podcast");
-  mostrarNombreArchivo(inputPodcast, nombrePodcast);
-
-  formPodcast.addEventListener("submit", (evento) => {
-    evento.preventDefault();
-    const archivo = inputPodcast.files[0];
-    if (!archivo) {
-      alert("Elige un archivo .mp3 antes de probarlo.");
-      return;
-    }
-    const titulo = document.getElementById("titulo-podcast").value.trim() || "Episodio sin título";
-    const lista = document.getElementById("lista-podcasts");
-
-    const tarjeta = document.createElement("article");
-    tarjeta.className = "tarjeta-audio";
-    tarjeta.dataset.buscable = window.normalizar(titulo);
-    tarjeta.innerHTML = `
-      <h3></h3>
-      <p>Solo en este computador · ${archivo.name}</p>
-      <audio controls style="width:100%" src="${URL.createObjectURL(archivo)}"></audio>`;
-    tarjeta.querySelector("h3").textContent = titulo;
-    lista.prepend(tarjeta);
-
-    formPodcast.reset();
-    nombrePodcast.textContent = "Ningún archivo elegido";
-  });
-}
-
-
-/* ===== Probar un documento de texto (.txt) ===== */
-const formDocumento = document.getElementById("form-documento");
-if (formDocumento) {
-  const inputDocumento = document.getElementById("archivo-documento");
-  const nombreDocumento = document.getElementById("nombre-archivo-documento");
-  mostrarNombreArchivo(inputDocumento, nombreDocumento);
-
-  formDocumento.addEventListener("submit", (evento) => {
-    evento.preventDefault();
-    const archivo = inputDocumento.files[0];
-    if (!archivo) {
-      alert("Elige un archivo de texto antes de probarlo.");
-      return;
-    }
-    const titulo = document.getElementById("titulo-documento").value.trim() || "Documento sin título";
-
-    const lector = new FileReader();
-    lector.onload = () => {
-      const lista = document.getElementById("lista-documentos");
-
-      const item = document.createElement("li");
-      item.className = "episodio";
-      item.innerHTML = `
-        <div class="fila-titulo">
-          <span class="titulo-doc"></span>
-          <span class="flecha" aria-hidden="true">▽</span>
-        </div>
-        <div class="detalle"><p></p></div>`;
-
-      // textContent y no innerHTML: si el .txt trae algo como <script>,
-      // se muestra como texto y no se ejecuta.
-      item.querySelector(".titulo-doc").textContent = titulo;
-      item.querySelector(".detalle p").textContent = lector.result;
-
-      lista.prepend(item);
-      activarAcordeon(item.querySelector(".fila-titulo"));
+    const agregar = (contenido) => {
+      const tarjeta = crearTarjeta(archivo, contenido);
+      tarjeta.dataset.buscable = window.normalizar(titulo);
+      // textContent y no innerHTML: si el título trae <script>, se ve como texto.
+      tarjeta.querySelector("h3, summary .titulo-doc").textContent = titulo;
+      pruebas.prepend(tarjeta);
     };
-    lector.readAsText(archivo);
 
-    formDocumento.reset();
-    nombreDocumento.textContent = "Ningún archivo elegido";
+    if (leerComoTexto) {
+      const lector = new FileReader();
+      lector.onload = () => agregar(lector.result);
+      lector.readAsText(archivo);
+    } else {
+      agregar();
+    }
+
+    formulario.reset();
+    nombre.textContent = "Ningún archivo elegido";
   });
 }
+
+function elemento(etiqueta, clase, html) {
+  const nodo = document.createElement(etiqueta);
+  nodo.className = clase;
+  nodo.innerHTML = html;
+  return nodo;
+}
+
+activarPrueba({
+  tipo: "video",
+  sinTitulo: "Video sin título",
+  avisoSinArchivo: "Elige un archivo .mp4 antes de probarlo.",
+  crearTarjeta: (archivo) => {
+    const tarjeta = elemento("article", "tarjeta", `
+      <video class="miniatura-video" controls src="${URL.createObjectURL(archivo)}"></video>
+      <div class="info"><h3></h3><p></p></div>`);
+    tarjeta.querySelector("p").textContent = `Solo en este computador · ${archivo.name}`;
+    return tarjeta;
+  },
+});
+
+activarPrueba({
+  tipo: "podcast",
+  sinTitulo: "Episodio sin título",
+  avisoSinArchivo: "Elige un archivo .mp3 antes de probarlo.",
+  crearTarjeta: (archivo) => {
+    const tarjeta = elemento("article", "tarjeta tarjeta-audio", `
+      <div class="info"><h3></h3><p></p></div>
+      <audio controls style="width:calc(100% - 2.2rem);margin:0 1.1rem 1.1rem"
+             src="${URL.createObjectURL(archivo)}"></audio>`);
+    tarjeta.querySelector("p").textContent = `Solo en este computador · ${archivo.name}`;
+    return tarjeta;
+  },
+});
+
+activarPrueba({
+  tipo: "documento",
+  sinTitulo: "Documento sin título",
+  avisoSinArchivo: "Elige un archivo de texto antes de probarlo.",
+  leerComoTexto: true,
+  crearTarjeta: (archivo, texto) => {
+    const item = elemento("details", "acordeon", `
+      <summary><span class="titulo-doc"></span></summary>
+      <div class="detalle"><p></p></div>`);
+    item.querySelector(".detalle p").textContent = texto;
+    return item;
+  },
+});

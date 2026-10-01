@@ -1,0 +1,104 @@
+/* ===========================================================
+   decoracion.css — los símbolos del colegio, con movimiento
+   ===========================================================
+   Íconos de línea inspirados en los símbolos del Manual de Marca
+   del INJUV (cohete, libro, matraz, globo, lápiz, bombilla, birrete,
+   átomo, nota musical) y en sus formas redondeadas (X, +, O).
+   Los crea decoracion.js; aquí solo se define cómo se ven y se mueven.
+
+   Reglas para que decoren sin estorbar:
+   - nunca se pueden tocar (pointer-events: none) ni los lee un lector
+     de pantalla (aria-hidden);
+   - van DETRÁS del texto y de las tarjetas;
+   - los laterales solo aparecen en pantallas anchas, donde sobra margen;
+   - si la persona pidió "reducir movimiento", se quedan quietos
+     (lo resuelve la regla global de base.css).
+   =========================================================== */
+
+.decoracion {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+main#contenido { position: relative; isolation: isolate; overflow: hidden; }
+main#contenido > .decoracion { z-index: -1; }
+
+.portada > .decoracion,
+.cabecera-pagina > .decoracion { position: absolute; z-index: 0; }
+
+.deco {
+  position: absolute;
+  display: block;
+  line-height: 0;
+  animation-duration: var(--dur, 7s);
+  animation-delay: var(--ret, 0s);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.deco svg {
+  width: 100%;
+  height: auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.deco .relleno { fill: currentColor; stroke: none; }
+.deco .grueso  { stroke-width: 9; }
+
+.deco-ambar  { color: var(--ambar); }
+.deco-marino { color: var(--marino); }
+.deco-teal   { color: var(--teal); }
+.deco-verde  { color: var(--verde); }
+.deco-arcilla{ color: var(--arcilla); }
+
+/* ---- Movimientos ---- */
+.anim-flotar { animation-name: deco-flotar; animation-direction: alternate; }
+.anim-girar  { animation-name: deco-girar;  animation-timing-function: linear; }
+.anim-pulsar { animation-name: deco-pulsar; animation-direction: alternate; }
+.anim-mecer  { animation-name: deco-mecer;  animation-direction: alternate; }
+
+@keyframes deco-flotar {
+  from { transform: translateY(0) rotate(var(--rot, 0deg)); }
+  to   { transform: translateY(-14px) rotate(calc(var(--rot, 0deg) + 6deg)); }
+}
+
+@keyframes deco-girar {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes deco-pulsar {
+  from { transform: scale(0.85) rotate(var(--rot, 0deg)); opacity: 0.75; }
+  to   { transform: scale(1.12) rotate(calc(var(--rot, 0deg) + 12deg)); opacity: 1; }
+}
+
+@keyframes deco-mecer {
+  from { transform: rotate(calc(var(--rot, 0deg) - 8deg)); }
+  to   { transform: rotate(calc(var(--rot, 0deg) + 8deg)); }
+}
+
+/* Las formas redondeadas de la portada y las cabeceras también respiran. */
+.portada::before,
+.cabecera-pagina::before,
+.cabecera-pagina::after {
+  animation: deco-flotar 8s ease-in-out infinite alternate;
+}
+
+/* ---- Laterales: solo cuando sobra margen a los lados ---- */
+.deco-lateral { opacity: 0.28; }
+
+@media (max-width: 1359px) {
+  .deco-lateral { display: none; }
+}
+
+/* En celular, la portada y las cabeceras se quedan con pocos íconos. */
+@media (max-width: 760px) {
+  .deco-ancho { display: none; }
+}

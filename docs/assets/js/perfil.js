@@ -1,8 +1,9 @@
 /* ===========================================================
    perfil.js — elegir un personaje para el perfil
    ===========================================================
-   Los cuatro personajes salen del banner de FilosofArTec que hizo
-   el equipo (carpeta "Logo e identidad de marca / Personajes").
+   Los personajes son los diseños OFICIALES del equipo, dibujados a mano
+   y pasados a digital (carpeta "Mascotas" del proyecto). No se generan
+   ni se retocan: se respetan tal cual. La iguana es la del logo oficial.
 
    No hay cuentas ni login (ver D-06 y D-13 en la bitácora), así que
    la elección se guarda con localStorage: queda recordada en ESE
@@ -10,13 +11,16 @@
    vuelve a preguntar.
    =========================================================== */
 
+/* "foco" es qué parte del dibujo se ve dentro del círculo del avatar:
+   en los personajes de cuerpo entero interesa la cara, arriba. */
 const PERSONAJES = [
-  { id: "gato",   nombre: "Gato",   archivo: "assets/img/personajes/gato.jpg" },
-  { id: "buho",   nombre: "Búho",   archivo: "assets/img/personajes/buho.jpg" },
-  { id: "castor", nombre: "Castor", archivo: "assets/img/personajes/castor.jpg" },
-  { id: "iguana", nombre: "Iguana", archivo: "assets/img/personajes/iguana.jpg" },
+  { id: "gato",   nombre: "Kat",   archivo: "assets/img/personajes/gato.png",   foco: "32% 10%" },
+  { id: "buho",   nombre: "Owliver",   archivo: "assets/img/personajes/buho.png",   foco: "50% 12%" },
+  { id: "castor", nombre: "Nora", archivo: "assets/img/personajes/castor.png", foco: "40% 14%" },
+  { id: "iguana", nombre: "Iguana", archivo: "assets/img/personajes/iguana.png", foco: "50% 30%" },
 ];
 
+const PERSONAJE_INICIAL = "buho"; // quien aparece como invitado hasta que se elija otro
 const CLAVE_GUARDADO = "iguana-personaje-elegido";
 
 
@@ -43,13 +47,14 @@ function aplicarPersonaje(id) {
   if (!personaje) return;
 
   document.querySelectorAll(".boton-usuario, .avatar-mini").forEach((elemento) => {
-    elemento.innerHTML = `<img src="${personaje.archivo}" alt="Avatar: ${personaje.nombre}">`;
+    elemento.innerHTML = `<img src="${personaje.archivo}" alt="Avatar: ${personaje.nombre}"
+                               style="object-position:${personaje.foco}">`;
   });
 
   const nombre = document.querySelector(".tarjeta-usuario-nombre");
   const alias = document.querySelector(".tarjeta-usuario-alias");
   if (nombre) nombre.textContent = personaje.nombre;
-  if (alias) alias.textContent = "tu personaje en La web de la iguana";
+  if (alias) alias.textContent = "Invitado · puedes cambiar de personaje";
 }
 
 
@@ -93,7 +98,7 @@ function cerrarModalPerfil() {
 }
 
 function marcarSeleccionActual(modal) {
-  const actual = personajeGuardado();
+  const actual = personajeGuardado() || PERSONAJE_INICIAL;
   modal.querySelectorAll(".opcion-personaje").forEach((boton) => {
     boton.classList.toggle("seleccionado", boton.dataset.personaje === actual);
   });
@@ -138,7 +143,6 @@ function activarSelectorDePersonaje() {
 }
 
 // Si ya habían elegido personaje antes, se aplica apenas carga la página.
-const elegidoAntes = personajeGuardado();
-if (elegidoAntes) aplicarPersonaje(elegidoAntes);
+aplicarPersonaje(personajeGuardado() || PERSONAJE_INICIAL);
 
 activarSelectorDePersonaje();

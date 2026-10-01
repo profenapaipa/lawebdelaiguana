@@ -1,0 +1,74 @@
+/* ===========================================================
+   marca.css — la identidad de marca, en un solo lugar
+   ===========================================================
+   Sale del "Manual de Marca.pdf" (Un café con la iguana).
+   Es el ÚNICO archivo donde se definen colores y tipografías:
+   el resto de las hojas usa estas variables y nunca un color suelto.
+   Si la marca cambia un color, se cambia aquí y cambia en todo el sitio.
+
+   Son DOS manuales que conviven como una sola identidad:
+     - "Un café con la iguana": crema, hueso, verde, teal, café, arcilla.
+     - Manual del Colegio INJUV: ámbar y azul marino (sus colores
+       principales), más la tipografía Montserrat y las formas redondeadas.
+
+   Criterio para mezclarlos: se usaron del colegio los dos colores
+   principales, porque el ámbar se lleva bien con el crema y el café de la
+   iguana, y el marino acompaña al teal y al verde. Se descartaron los
+   secundarios del colegio (lima, rojo, amarillo, azul eléctrico y cian)
+   porque chocan con el verde y el teal de la iguana.
+
+   Los colores del café son los de las MUESTRAS de la página "Paleta de
+   colores" (los códigos de texto de esa lámina están corridos, así que
+   se leyó el color real de cada muestra).
+   */
+
+:root {
+  /* --- Paleta base (las 8 muestras del manual) --- */
+  --negro:  #010102;
+  --crema:  #F9E8D8;
+  --hueso:  #F2EEEB;
+  --arcilla:#BF8360;
+  --taupe:  #735B53;
+  --cafe:   #493127;
+  --verde:  #2E8150;   /* muestreado del cuerpo de la iguana en el logo oficial */
+  --teal:   #257680;
+
+  /* --- Manual del colegio INJUV: sus dos colores principales --- */
+  --ambar:  #F5B016;   /* acento: etiquetas, resaltes, formas decorativas */
+  --marino: #273C66;   /* ancla institucional: pie, navegación activa */
+
+  /* --- Papel --- */
+  --blanco: #FFFFFF;
+
+  /* --- Roles: lo que usan las demás hojas --- */
+  --fondo:      var(--hueso);
+  --superficie: var(--blanco);
+  --texto:      var(--negro);
+  --texto-suave:var(--taupe);
+  --titulo:     var(--teal);
+  --accion:     var(--verde);
+  --linea:      var(--negro);
+
+  /* --- Tipografías ---
+     Títulos: Anton (café). Texto corrido: Montserrat (colegio).
+     Destacados (frases de portada, créditos): Boston Angel (café). */
+  --fuente-titulos:   "Anton", "Impact", "Arial Narrow", sans-serif;
+  --fuente-texto:     "Montserrat", "Segoe UI", system-ui, sans-serif;
+  --fuente-destacada: "Boston Angel", "Playfair Display", Georgia, serif;
+
+  /* --- Medidas --- */
+  --radio: 14px;
+  --sombra-dura: 4px 4px 0 var(--negro);
+  --ancho: 1120px;
+  --margen: clamp(1rem, 4vw, 2rem);
+}
+
+/* Boston Angel no está en Google Fonts. Si el equipo tiene el archivo instalado
+   en el computador, se usa solo; si no, entra Playfair Display, que es muy parecida.
+   Para que la vean todos los visitantes hay que subir el archivo de la fuente
+   a assets/fonts/ y agregar aquí un  src: url(...)  (ver README). */
+@font-face {
+  font-family: "Boston Angel";
+  src: local("Boston Angel"), local("BostonAngel");
+  font-display: swap;
+}
